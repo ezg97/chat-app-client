@@ -1,6 +1,6 @@
 import React from 'react';
 import './Chat.css';
-import Store from '../Store';
+import Store from '../../ContextAPI/Store';
 
 
 class Chat extends React.Component{

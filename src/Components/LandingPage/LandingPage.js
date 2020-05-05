@@ -46,6 +46,11 @@ class LandingPage extends React.Component{
                 </svg>
             </header>
 
+            <section class='buttons'>
+                <button>Sign up</button>
+                <button>Log in</button>
+            </section>
+
         </div>
         );
 

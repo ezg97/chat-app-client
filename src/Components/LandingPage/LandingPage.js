@@ -51,6 +51,11 @@ class LandingPage extends React.Component{
                 <button>Log in</button>
             </section>
 
+            <section>
+                <a class='down-bar' href="#">v</a>
+            </section>
+
+
         </div>
         );
 

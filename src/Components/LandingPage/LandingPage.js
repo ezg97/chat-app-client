@@ -22,6 +22,13 @@ class LandingPage extends React.Component{
 
     // }
 
+    handleDownButton = () => {
+
+        const elmnt = document.getElementById("hidden");
+        elmnt.setAttribute("id", "landing-info");
+        elmnt.scrollIntoView();
+    }
+
     render() {
 
         
@@ -52,9 +59,23 @@ class LandingPage extends React.Component{
             </section>
 
             <section>
-                <a class='down-bar' href="#">v</a>
+                <button class='down-bar' onClick={() => this.handleDownButton()}>v</button>
             </section>
 
+            <section id="hidden">
+                <section>
+                    <p>Lorem10  dsflakdsjf ;lsadjf; lkdfja ldskfjads lkfjdsalkf ;jdsalkf ja;ldskf j;lkdsf ;jalskfd j;alfds  </p> 
+                </section>
+                <section>
+                    <p>Lorem10  dsflakdsjf ;lsadjf; lkdfja ldskfjads lkfjdsalkf ;jdsalkf ja;ldskf j;lkdsf ;jalskfd j;alfds  </p> 
+                </section>
+                <section>
+                    <p>Lorem10  dsflakdsjf ;lsadjf; lkdfja ldskfjads lkfjdsalkf ;jdsalkf ja;ldskf j;lkdsf ;jalskfd j;alfds  </p> 
+                </section>
+                <section>
+                    <p>Lorem10  dsflakdsjf ;lsadjf; lkdfja ldskfjads lkfjdsalkf ;jdsalkf ja;ldskf j;lkdsf ;jalskfd j;alfds  </p> 
+                </section>
+            </section>
 
         </div>
         );

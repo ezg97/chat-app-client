@@ -3,6 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 :root{
@@ -124,7 +125,7 @@ button:hover, button:focus{
     box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #8c9ca8;
 }
 
-/* 5. Arrow */
+/* 5. Down bar */
     .down-bar{
         position: absolute;
         top: 95vh;
@@ -150,6 +151,16 @@ button:hover, button:focus{
         background: #2196f3;
         box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #8c9ca8;
     }
+
+/* 6. Landing Info */
+#hidden{
+    display:none;
+}
+
+#landing-info{
+    position: relative;
+    top: 80vh;
+}
 
     
 

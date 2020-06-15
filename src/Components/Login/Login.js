@@ -50,14 +50,14 @@ class Login extends React.Component{
         <div className='page'>
             <h3>Chat App</h3>
 
-            {console.log('here -:', this.context)}
+            {/* {console.log('here -:', this.context)}
             
                 
                 {/* </div> */}
-            <input id='handle' onChange={(event) => this.onChange(event.target.value, null, event)} type='text' placeholder='Handle'>
+            {/* <input id='handle' onChange={(event) => this.onChange(event.target.value, null, event)} type='text' placeholder='Handle'>
             </input>
             <input id='message' onChange={(event) => this.onChange(null, event.target.value)}  type='text' placeholder='Message'></input>
-            <button id="send" onClick={() => this.context.sendMessage(this.state.handle, this.state.content)}>Send</button>
+            <button id="send" onClick={() => this.context.sendMessage(this.state.handle, this.state.content)}>Send</button>  */}
 
         </div>
         );

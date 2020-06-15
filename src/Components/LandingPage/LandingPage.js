@@ -1,5 +1,7 @@
 import React from 'react';
 import './LandingPage.css';
+import { Route, NavLink } from 'react-router-dom';
+
 
 
 class LandingPage extends React.Component{
@@ -54,8 +56,8 @@ class LandingPage extends React.Component{
             </header>
 
             <section class='buttons'>
-                <button>Sign up</button>
-                <button>Log in</button>
+                <NavLink to='/login'>Sign up</NavLink>
+                <NavLink to='/login'>Log in</NavLink>
             </section>
 
             <section>
@@ -64,14 +66,23 @@ class LandingPage extends React.Component{
 
             <section id="hidden">
                 <section>
+                    <header>
+                        <h3>Purpose</h3>
+                    </header>
                     <p>Lorem10  dsflakdsjf ;lsadjf; lkdfja ldskfjads lkfjdsalkf ;jdsalkf ja;ldskf j;lkdsf ;jalskfd j;alfds  </p> 
                 </section>
+
+                <section>
+                <header>
+                        <h3>Features</h3>
+                    </header>
+                    <p>Lorem10  dsflakdsjf ;lsadjf; lkdfja ldskfjads lkfjdsalkf ;jdsalkf ja;ldskf j;lkdsf ;jalskfd j;alfds  </p> 
+                </section>
+
                 <section>
                     <p>Lorem10  dsflakdsjf ;lsadjf; lkdfja ldskfjads lkfjdsalkf ;jdsalkf ja;ldskf j;lkdsf ;jalskfd j;alfds  </p> 
                 </section>
-                <section>
-                    <p>Lorem10  dsflakdsjf ;lsadjf; lkdfja ldskfjads lkfjdsalkf ;jdsalkf ja;ldskf j;lkdsf ;jalskfd j;alfds  </p> 
-                </section>
+
                 <section>
                     <p>Lorem10  dsflakdsjf ;lsadjf; lkdfja ldskfjads lkfjdsalkf ;jdsalkf ja;ldskf j;lkdsf ;jalskfd j;alfds  </p> 
                 </section>

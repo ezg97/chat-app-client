@@ -9,7 +9,7 @@
 :root{
     --width-size: 300px;
     --button-width-size: 90px;
-    --button-height-size: 35px;
+    --button-height-size: 50px;
 
 }
 
@@ -100,17 +100,19 @@
 
 }
 
-button{
+button, a{
     width: var(--button-width-size);
     height: var(--button-height-size);
 
     font-size: 18px;
 
-    padding: 5px;
+    padding: 10px;
     cursor: default;
+    
 
     background-color: white;
     color: rgb(32, 35, 48);
+    text-decoration: none;
 
     border-radius: 5px;
     
@@ -119,7 +121,7 @@ button{
 
 }
 
-button:hover, button:focus{
+button:hover, button:focus, a:hover, a:focus{
     color:white;
     background: #2196f3;
     box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #8c9ca8;
@@ -150,6 +152,7 @@ button:hover, button:focus{
         color:white;
         background: #2196f3;
         box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #8c9ca8;
+        cursor: pointer;
     }
 
 /* 6. Landing Info */

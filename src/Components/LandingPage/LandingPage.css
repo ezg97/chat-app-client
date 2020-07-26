@@ -100,7 +100,7 @@
 
 }
 
-button, a{
+.buttons button, .buttons a{
     width: var(--button-width-size);
     height: var(--button-height-size);
 

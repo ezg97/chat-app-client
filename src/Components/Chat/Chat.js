@@ -63,8 +63,8 @@ class Chat extends React.Component{
         
 
         return(
-        <div className='page'>
-            <h3>Chat App</h3>
+        <div className='page chat'>
+          
 
             {console.log('here -:', this.context)}
             <div id='chat-window'>

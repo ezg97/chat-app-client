@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
-import Store from '../Store';
+import Store from '../../ContextAPI/Store';
 import Chat from '../Chat/Chat'
-import '../../App.css';
+import SideBar from '../SideBar/SideBar';
 
 class Home extends Component {
   constructor(props){
@@ -17,7 +17,7 @@ class Home extends Component {
       // sports: [{from: 'Elijah', msg: "football is cool"}, {from: 'Jack', msg: "yes"}, {from: 'Al', msg: "no"}],
       // code: [{from: 'Elijah', msg: "OOP?"}, {from: 'Jack', msg: "ew"}, {from: 'Al', msg: "nah"}],
     };
-
+ 
     //initialize
     this.socket = socketIOClient('http://localhost:8000');
     this.typing = 0;
@@ -95,8 +95,10 @@ class Home extends Component {
         <div className='container'>
           <main className="App">
             {/* content goes here */ console.log('home state: ',this.state)}
+            <Route exact path='/home' component={SideBar} />
+
             <Switch>
-              <Route exact path='/' component={Chat} />
+              <Route exact path='/home' component={Chat} />
 
             </Switch>
           </main>

@@ -55,13 +55,13 @@ class LandingPage extends React.Component{
                 </svg>
             </header>
 
-            <section class='buttons'>
+            <section className='buttons'>
                 <NavLink to='/login'>Sign up</NavLink>
                 <NavLink to='/login'>Log in</NavLink>
             </section>
 
             <section>
-                <button class='down-bar' onClick={() => this.handleDownButton()}>v</button>
+                <button className='down-bar' onClick={() => this.handleDownButton()}>v</button>
             </section>
 
             <section id="hidden">

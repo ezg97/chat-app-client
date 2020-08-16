@@ -66,7 +66,7 @@ class Chat extends React.Component{
         <div className='page chat'>
           
 
-            {console.log('here -:', this.context)}
+            {/* {console.log('here -:', this.context)} */}
             <div id='chat-window'>
                 {/* <div id='output'> */}
                 <div className="typing" ref={ this.myRef }>

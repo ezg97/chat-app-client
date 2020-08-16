@@ -52,21 +52,28 @@ class Login extends React.Component{
 
         
 
-        fetch('http://localhost:8000',
-        { method: "GET", redirect: "follow", 'content-type': 'application/json'})
+        fetch('http://localhost:8000/auth/login/google',
+        {   method: "GET", 
+            headers: {
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Content-Type': 'applications/json',
+                'redirect': 'follow'
+            }
+        })
         .then(res => {
-            console.log('google 2');
+            // console.log('google 2');
             if(!res.ok){
                 console.log('error:', res);
             }
-
+            // console.log('made it');
             return res.json(); //the response is NOT Json
         })
         .then(res => {
-            console.log('succsess: ', res);
-            // let myWindow = window.location.href="http://localhost:8000/auth/google";
+            // console.log('succsess: ', res);
+            let myWindow = window.location.href="http://localhost:8000/auth/google";
 
-            // console.log(myWindow);
+            console.log(myWindow);
             // console.log(myWindow.closed);
             
 
@@ -83,6 +90,7 @@ class Login extends React.Component{
         return(
         <div className='page'>
             <h3>Log In</h3>
+            {/* {console.log('cookie%c:'+document.cookie,'color: blue; font-size: 16px')} */}
 
             <form className="user-info-form" onSubmit={e => this.handleSubmit(e)}>
 

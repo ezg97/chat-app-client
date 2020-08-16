@@ -4,6 +4,8 @@ import socketIOClient from 'socket.io-client';
 import Store from '../../ContextAPI/Store';
 import Chat from '../Chat/Chat'
 import SideBar from '../SideBar/SideBar';
+import NavBar from '../NavBar/NavBar';
+
 
 class Home extends Component {
   constructor(props){
@@ -93,12 +95,15 @@ class Home extends Component {
     return (
       <Store.Provider value = {{sendMessage: this.sendMessage, typingMessage: this.typingMessage, isTyping: this.state.isTyping, typingHandle: this.state.typingHandle, messages: this.state.messages}}>
         <div className='container'>
+
+        <Route exact path={['/','/home']} component={NavBar} />
+
           <main className="App">
             {/* content goes here */ console.log('home state: ',this.state)}
-            <Route exact path='/home' component={SideBar} />
+            <Route exact path={['/','/home']} component={SideBar} />
 
             <Switch>
-              <Route exact path='/home' component={Chat} />
+              <Route exact path={['/','/home']} component={Chat} />
 
             </Switch>
           </main>

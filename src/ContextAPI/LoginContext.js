@@ -1,12 +1,17 @@
 import {createContext} from 'react';
 
-export const Store = createContext({
+// console.log('HERE INSIDE OF CONTEXT API');
+
+export const Auth = createContext({
     username: '',
     passowrd: '',
     token: '',
     id: 0,
-
+    isAuthValid: false,
+    authorize: () => {
+    },
+    userHasBeenChecked: false,
 
 });
 
-export default Store;
+export default Auth;

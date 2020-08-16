@@ -1,9 +1,10 @@
 import React from 'react';
-// import './Chat.css';
+import {Route} from 'react-router-dom';
 import LoginContext from '../../ContextAPI/LoginContext';
+// import SearchBar from '../SearchBar/SearchBar';
+
 
 import './SideBar.css';
-
 
 class SideBar extends React.Component{
 
@@ -18,21 +19,39 @@ class SideBar extends React.Component{
 
     static contextType = LoginContext;
 
-    
-
-
+    componentDidMount() {
+        //get ALL of the user's links
+        fetch('http://localhost:8000/user/links/1',
+                {   method: "GET", 
+                    'credentials': 'include',
+                    headers: new Headers({
+                        'Accept': 'application/json',
+                        'Access-Control-Allow-Origin':'http://localhost:3000/',
+                        'Content-Type': 'application/json',
+                    }),
+                })
+                .then(userLinks => {
+                    console.log('- Links have been returned');
+                    console.log({userLinks});
+                    if (!userLinks.ok) {
+                        console.log('error:', userLinks);
+                    }
+                    return userLinks.json(); //the response is NOT Json
+                })
+                .then (userLinks => {
+                    console.log({userLinks});
+                    if (Object.keys(userLinks).length > 0) {
+                        this.context.updateLinks({userLinks});
+                    }
+                });
+    }
 
     render() {
-
-        
 
         return(
         <div className='page sidebar'>
 
-            <div className="search">
-                <input type='text' placeholder="Username"></input>
-                <button>Search</button>
-            </div>
+            {/* <Route exact path={['/','/home']} component={SearchBar} /> */}
 
             <ul className='chat-list'>
                 <li>

@@ -2,6 +2,7 @@
     
     width: 32%;
     float: left;
+    justify-content: center;
 }
 
 
@@ -50,7 +51,7 @@
 }
 
 
-.search {
+/* .search {
     padding: 5px;
     width: 100%;
 
@@ -69,7 +70,7 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 5px;
-}
+} */
 
 
 .chat-list li:hover, .chat-list li:focus {

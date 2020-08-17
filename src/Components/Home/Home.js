@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
+
 import Store from '../../ContextAPI/Store';
+import LoginContext from '../../ContextAPI/LoginContext';
+
 import Chat from '../Chat/Chat'
 import SideBar from '../SideBar/SideBar';
 import NavBar from '../NavBar/NavBar';
+import SearchResults from '../SearchResults/SearchResults';
 
 
 class Home extends Component {
@@ -46,7 +50,9 @@ class Home extends Component {
 
   }
 
-  static contextType = Store;
+  // static contextType = Store;
+  static contextType = LoginContext;
+
 
 
 
@@ -102,10 +108,11 @@ class Home extends Component {
             {/* content goes here */ console.log('home state: ',this.state)}
             <Route exact path={['/','/home']} component={SideBar} />
 
-            <Switch>
-              <Route exact path={['/','/home']} component={Chat} />
-
-            </Switch>
+            {/* if there are no search results then load the chat, if there are then load the results */}
+            {this.context.searchResults.length === 0
+              ?<Route exact path={['/','/home']} component={Chat} />
+              :<Route exact path={['/','/home']} component={SearchResults} />
+            }
           </main>
 
         </div>

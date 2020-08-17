@@ -8,9 +8,11 @@ export const Auth = createContext({
     token: '',
     id: 0,
     isAuthValid: false,
+    links: [],
+    searchResults: [],
+    userHasBeenChecked: false,
     authorize: () => {
     },
-    userHasBeenChecked: false,
 
 });
 

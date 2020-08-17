@@ -25,11 +25,13 @@ class NavBar extends React.Component{
         return(
         <nav className = 'app_nav'>
             <ul>
-              <li><p>logo</p></li>
+              <li><p>&#128490;</p></li>
               <li><h3>Chat App</h3></li>
             </ul>
             <Route exact path={['/','/home']} component={SearchBar} />
-            <p>profile</p>
+            <div class='img-border'>
+                <img class="img" src={this.context.user.user_thumbnail} alt="Logo"/>
+            </div>        
         </nav>
         );
     }

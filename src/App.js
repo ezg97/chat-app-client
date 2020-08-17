@@ -23,6 +23,7 @@ class App extends Component {
       id: 0,
       user: {},
       links: [],
+      searchResults: [],
       loggedIn: false,
       userHasBeenChecked: false, //this will be used to see if "authorize()" has been executed yet
       // general: [{from: 'Elijah', msg: "Hey guys"}, {from: 'Jack', msg: "Hey"}, {from: 'Al', msg: "Hi"}],
@@ -104,11 +105,17 @@ class App extends Component {
     // })
   }
 
-  updateLinks(userLinks) {
+  updateLinks = (userLinks) => {
     this.setState({
       links: userLinks
     });
-  }  
+  } 
+  
+  updateSearchResults = (results) => {
+    this.setState({
+      searchResults: results
+    });
+  } 
 
   render() {
 
@@ -116,12 +123,13 @@ class App extends Component {
     //   console.log('recieved: ', msg);
     //   this.setState({ 'messages': [...this.state.messages, msg] })
     // });
-    
+    console.log('current state,',this.state);
 
     return (
       <Auth.Provider value = {{username: this.state.username, password: this.state.password, token: this.state.token, id: this.state.id,
-       isAuthValid: false, authorize: this.authorize, loggedIn: this.state.loggedIn, userHasBeenChecked: this.state.userHasBeenChecked,
-       links: this.state.links, updateLinks: this.updateLinks}}>
+       isAuthValid: false, loggedIn: this.state.loggedIn, userHasBeenChecked: this.state.userHasBeenChecked, 
+       links: this.state.links, searchResults: this.state.searchResults, user: this.state.user,
+       authorize: this.authorize, updateLinks: this.updateLinks, updateSearchResults: this.updateSearchResults}}>
         <div className='container'>
           <main className="App">
             { console.log('app state: ', this.state)}

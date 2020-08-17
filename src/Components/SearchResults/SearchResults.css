@@ -1,0 +1,101 @@
+.search-results{
+    width: 68%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+   
+    /* 2.2 is the height of the navbar. I added 1.2 extra to have some space */
+    padding-top: 3.4em;
+
+    border: 2px solid red;
+
+    /* height: calc(100% - 2.2em); */
+    padding-left: 40px;
+
+}
+
+.result-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    list-style-type: none;
+
+    width: 75%;
+
+    padding: 5px;
+    border: 1px solid green;
+}
+
+.result-list li{
+    border: 5px solid rgb(32, 35, 48);
+    background-color: grey;
+
+    padding: 5px;
+    border-radius: 10px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.result-list li section{
+    display: flex;
+    justify-content: flex-start;
+    float: left;
+}
+
+
+.img-border{
+    width: 30px;
+    height: 30px;
+}
+.img{
+    border-bottom: 2px solid yellow;
+    border-right: 2px solid yellow;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    padding: 0%;
+    margin: 0%;
+}
+
+.result-list li section p {
+    padding-left: 10px;
+}
+
+
+/* https://stackoverflow.com/questions/48845848/how-do-you-animate-text-to-slide-out-from-an-image */
+.lock-wrap{
+    display: flex;
+    justify-content: flex-end;
+    width: 4em;
+    cursor: pointer;
+}
+
+.lock-wrap:after{
+    content: 'Link';
+  white-space:nowrap;
+  overflow:hidden;
+  flex-grow:0;
+  max-width:0px;
+  transition: .6s cubic-bezier(.4,0,.2,1);
+  margin: 0 .5rem;
+}
+
+.lock-wrap:hover:after {
+    max-width:250px;
+}
+
+.lock{
+    position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+}
+

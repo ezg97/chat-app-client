@@ -9,10 +9,13 @@
     display: flex;
     flex-direction: column;
     /* background-color: green */
+    padding-top: 1.4em;
 }
 
 .chat{
     width: 68%;
+    /* height: calc(100% - 2.2em); */
+
 }
 
 #chat-window{

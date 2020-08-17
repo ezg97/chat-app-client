@@ -75,19 +75,16 @@ class SearchBar extends React.Component{
                     'Content-Type': 'application/json',
                 }),
             })
-            .then(matchedUsers => {
+            .then(searchedUsers => {
                 console.log('- & matches have been returned');
-                console.log({matchedUsers});
-                if (!matchedUsers.ok) {
-                    console.log('error:', matchedUsers);
+                if (!searchedUsers.ok) {
+                    console.log('error:', searchedUsers);
                 }
-                return matchedUsers.json(); //the response is NOT Json
+                return searchedUsers.json(); //the response is NOT Json
             })
-            .then (matchedUsers => {
-                console.log({matchedUsers});
-                        // this.setState({
-                        //     matchedUsers: matchedUsers
-                        // });
+            .then (results => {
+                console.log({results});
+                this.context.updateSearchResults(results);
                         // if (Object.keys(matchedUsers).length > 0) {
                         //     this.context.updateLinks({matchedUsers});
                         // }
@@ -98,7 +95,7 @@ class SearchBar extends React.Component{
    //debounce, wait a second to execute the method, all other calls to this method will be ignored if it is within a second
    whileSearching = debounce(() => { 
         this.getSuggestions();
-    }, 1000);
+    }, 500);
 
     // search = debounce(console.log('been deBOUNCED'), 1000);
 

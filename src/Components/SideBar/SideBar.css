@@ -1,14 +1,56 @@
 .sidebar{
-    
     width: 32%;
     float: left;
     justify-content: center;
     /* 2.2 is the height of the navbar. I added 1.2 extra to have some space */
     padding-top: 3.4em;
     /* height: calc(100% - 2.2em); */
+}
+
+/* START OF LINKS DISPLAY */
+.link-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    list-style-type: none;
+
+    width: 100%;
+
+    padding: 5px;
+    border: 1px solid green;
+}
+
+.link-list li{
+    border: 5px solid rgb(32, 35, 48);
+    background-color: grey;
+
+    padding: 5px;
+    border-radius: 10px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.link-list li section{
+    display: flex;
+    justify-content: flex-start;
+    float: left;
+    width: 55%;
+}
+
+.link-list li section p {
+    padding-left: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    /* min-width: 3.5em; */
+    width: 70%;
 
 }
 
+/* END OF LINKS DISPLAY */
 
 .chat-list{
     display: flex;

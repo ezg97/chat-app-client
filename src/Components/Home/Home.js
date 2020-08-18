@@ -57,6 +57,8 @@ class Home extends Component {
 
 
   componentDidMount() {
+    console.log('HOMEJS');
+    this.context.getLinks();
     
     // socket.on("FromAPI", data => {
     //   setResponse(data);

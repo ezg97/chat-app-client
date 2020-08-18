@@ -22,7 +22,8 @@ class App extends Component {
       token: '',
       id: 0,
       user: {},
-      links: [],
+      links: [], //ids
+      allLinks: [], //names, thumbnails, ids
       searchResults: [],
       loggedIn: false,
       userHasBeenChecked: false, //this will be used to see if "authorize()" has been executed yet
@@ -96,14 +97,137 @@ class App extends Component {
     });
   }
 
-
   componentDidMount() {
     console.log('app mounted');
     this.authorize();
+    //need to figure out how to let me get authorized so I can get the user value (id mainly) and then 
+    // get the links, and then get the users for the links....
+    //this.getLinks(); //authorize is asynch and takes longer so i need to run this somewhere else
     // socket.on("FromAPI", data => {
     //   setResponse(data);
     // })
   }
+
+  getLinks = () => {
+    console.log('here',this.state.user.id)
+    fetch(`http://localhost:8000/user/links/${this.state.user.id}`,
+    {   method: "GET", 
+         'credentials': 'include',
+          headers: new Headers({
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':'http://localhost:3000/',
+            'Content-Type': 'application/json',
+         }),
+    })
+    .then(links => {
+        if (!links.ok) {
+            console.log('error:', links);
+        }
+        return links.json(); //the response is NOT Json
+    })
+    .then (links => {
+        console.log({links});
+        // if (Object.keys(links).length > 0) {
+          //had to remove above line, because if the user deletes all of their links then they will have zero
+          this.setState({ 
+            links: links
+          });
+        this.getAllLinks();
+    });
+  }
+
+  //this IS A GET but bc I need to send the body, it's marked as a POST
+  getAllLinks = () => {
+    console.log('getting all links');
+    const id = this.state.links;
+    console.log({id});
+    
+    if (id.length > 0) {
+      fetch(`http://localhost:8000/user/allLinks`,
+      {   method: "POST", 
+          'credentials': 'include',
+            headers: new Headers({
+              'Accept': 'application/json',
+              'Access-Control-Allow-Origin':'http://localhost:3000/',
+              'Content-Type': 'application/json',
+          }),
+          body: JSON.stringify( id )
+      })
+      .then(linkData => {
+          if (!linkData.ok) {
+              console.log('error:', linkData);
+          }
+          return linkData.json(); //the response is NOT Json
+      })
+      .then (linkData => {
+          console.log('returned from chain');
+          console.log({linkData});
+          // if (Object.keys(linkData).length > 0) {
+                    //had to remove above line, because if the user deletes all of their links then they will have zero
+            this.setState({ 
+              allLinks: linkData
+            });
+      });
+    }
+  
+    else {
+      this.setState({
+        allLinks: []
+      });
+    }
+  }
+
+  addLink = (id) => {
+    console.log('linked clicked!', id);
+    fetch(`http://localhost:8000/user/addLink`,
+        {   method: "POST", 
+            'credentials': 'include',
+            headers: new Headers({
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000/',
+                'Content-Type': 'application/json',
+            }),
+            body: JSON.stringify( 
+                { toid: id, fromid: this.state.user.id}
+            )
+        })
+        .then(searchedUsers => {
+            console.log('returned from link service');
+            if (!searchedUsers.ok) {
+                console.log('error:', searchedUsers);
+            }
+            return searchedUsers.json(); //the response is NOT Json
+        })
+        .then (results => {
+            this.getLinks();  
+        });
+    }
+
+    deleteLink = (id) => {
+      console.log('linked clicked!', id);
+      fetch(`http://localhost:8000/user/deleteLink`,
+          {   method: "DELETE", 
+              'credentials': 'include',
+              headers: new Headers({
+                  'Accept': 'application/json',
+                  'Access-Control-Allow-Origin':'http://localhost:3000/',
+                  'Content-Type': 'application/json',
+              }),
+              body: JSON.stringify( 
+                  { toid: id, fromid: this.state.user.id}
+              )
+          })
+          .then(searchedUsers => {
+              console.log('returned from link service');
+              if (!searchedUsers.ok) {
+                  console.log('error:', searchedUsers);
+              }
+              return searchedUsers.json(); //the response is NOT Json
+          })
+          .then (results => {
+              this.getLinks();
+          });
+      }
 
   updateLinks = (userLinks) => {
     this.setState({
@@ -128,8 +252,10 @@ class App extends Component {
     return (
       <Auth.Provider value = {{username: this.state.username, password: this.state.password, token: this.state.token, id: this.state.id,
        isAuthValid: false, loggedIn: this.state.loggedIn, userHasBeenChecked: this.state.userHasBeenChecked, 
-       links: this.state.links, searchResults: this.state.searchResults, user: this.state.user,
-       authorize: this.authorize, updateLinks: this.updateLinks, updateSearchResults: this.updateSearchResults}}>
+       links: this.state.links, allLinks: this.state.allLinks, searchResults: this.state.searchResults, user: this.state.user,
+       authorize: this.authorize, updateLinks: this.updateLinks, updateSearchResults: this.updateSearchResults,
+       getLinks: this.getLinks, getAllLinks: this.getAllLinks,
+       addLink: this.addLink, deleteLink: this.deleteLink}}>
         <div className='container'>
           <main className="App">
             { console.log('app state: ', this.state)}

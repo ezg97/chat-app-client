@@ -13,7 +13,6 @@
 
     /* height: calc(100% - 2.2em); */
     padding-left: 40px;
-
 }
 
 .result-list{
@@ -73,7 +72,7 @@
 .lock-wrap{
     display: flex;
     justify-content: flex-end;
-    width: 4em;
+    width: 3.5em;
     cursor: pointer;
 }
 
@@ -84,11 +83,24 @@
   flex-grow:0;
   max-width:0px;
   transition: .6s cubic-bezier(.4,0,.2,1);
-  margin: 0 .5rem;
+  /* margin: 0 .5rem; */
+  margin: 0 .1rem;
+
+  color:lightgreen;
 }
 
 .lock-wrap:hover:after {
     max-width:250px;
+}
+
+.del{
+    width: 4.5em;
+}
+
+.del:after{
+    content: "Unlink";
+    color: tomato;
+
 }
 
 .lock{

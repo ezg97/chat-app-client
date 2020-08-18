@@ -23,6 +23,8 @@ class SearchResults extends React.Component{
     
     }
 
+    
+
     render() {
 
         return(
@@ -43,11 +45,26 @@ class SearchResults extends React.Component{
                                 <p>{user.user_name}</p>
                             </section>
                             {/* open lock: &#128275;  closed lock: &#128274; */}
-                            <div className='lock-wrap'>
-                                <div className='lock'>
-                                    <p>&#128275;</p>
-                                </div>
-                            </div>    
+                            {/* if the searched user is one of the user links then... */}
+                            {this.context.links.includes(user.id)
+                                // LOCKed - DELETE
+                                ?<div className='lock-wrap del' onClick={() => this.context.deleteLink(user.id)}>
+                                    <div className='lock'>
+                                        <p>&#128274;</p>
+                                    </div>
+                                </div>   
+                                // if the searched user is NOT one of the current user's links 
+                                // if the current user is equal to the searched user then do not display the "link" option
+                                :this.context.user.id === user.id
+                                    ?null
+                                    // UNLOCKed - ADD
+                                    :<div className='lock-wrap' onClick={() => this.context.addLink(user.id)}>
+                                        <div className='lock'>
+                                            <p>&#128275;</p>
+                                        </div>
+                                    </div>   
+                            }
+                             
                         </li>
                     )}
             </ul>

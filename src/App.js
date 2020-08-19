@@ -25,6 +25,7 @@ class App extends Component {
       links: [], //ids
       allLinks: [], //names, thumbnails, ids
       searchResults: [],
+      selectedUser: 0, //the ids (from database) of the users that I'm talking to
       loggedIn: false,
       userHasBeenChecked: false, //this will be used to see if "authorize()" has been executed yet
       // general: [{from: 'Elijah', msg: "Hey guys"}, {from: 'Jack', msg: "Hey"}, {from: 'Al', msg: "Hi"}],
@@ -228,6 +229,17 @@ class App extends Component {
               this.getLinks();
           });
       }
+    
+  
+  selectUser = (id) => {
+    console.log('clicked why?',id);
+    this.setState({
+      selectedUser: id
+    });
+    //clear search results or else the chat page won't be rendered... note: for some reason I can't pass an empty array to the method
+    //so I passed an empty string because: ''.length is equal to zero so it operates like an empty array []
+    this.updateSearchResults('');
+  }
 
   updateLinks = (userLinks) => {
     this.setState({
@@ -253,9 +265,11 @@ class App extends Component {
       <Auth.Provider value = {{username: this.state.username, password: this.state.password, token: this.state.token, id: this.state.id,
        isAuthValid: false, loggedIn: this.state.loggedIn, userHasBeenChecked: this.state.userHasBeenChecked, 
        links: this.state.links, allLinks: this.state.allLinks, searchResults: this.state.searchResults, user: this.state.user,
+       selectedUser: this.state.selectedUser,
        authorize: this.authorize, updateLinks: this.updateLinks, updateSearchResults: this.updateSearchResults,
        getLinks: this.getLinks, getAllLinks: this.getAllLinks,
-       addLink: this.addLink, deleteLink: this.deleteLink}}>
+       addLink: this.addLink, deleteLink: this.deleteLink,
+       selectUser: this.selectUser}}>
         <div className='container'>
           <main className="App">
             { console.log('app state: ', this.state)}

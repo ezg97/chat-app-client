@@ -12,6 +12,10 @@ import SearchResults from '../SearchResults/SearchResults';
 
 
 class Home extends Component {
+
+    // static contextType = Store;
+    static contextType = LoginContext;
+
   constructor(props){
     super(props);
     this.state = {
@@ -28,10 +32,13 @@ class Home extends Component {
     this.socket = socketIOClient('http://localhost:8000');
     this.typing = 0;
 
+    //listen for: Server will respond with the "socketID" once the user has been connected
     this.socket.on('id', id => {
       console.log('id is in: ',id);
       this.setState({socketId: id});
+      this.socket.emit('addUser', this.context.user.id);
     })
+
     //listen for: Incoming Messages
     this.socket.on('message', (msg) => {
       console.log('recieved: ', msg);
@@ -48,10 +55,11 @@ class Home extends Component {
       this.handleIsTyping();
     });
 
+   // this.joinRoom();
+
   }
 
-  // static contextType = Store;
-  static contextType = LoginContext;
+
 
 
 
@@ -63,8 +71,16 @@ class Home extends Component {
     // socket.on("FromAPI", data => {
     //   setResponse(data);
     // })
-    
+    console.log('JOINING ROOM//')
+  }
 
+  joinRoom = () => {
+    // if (this.context.selectedUser > 0) {
+    //   console.log('yeeeeeeehawww! /.')
+    // }
+    const targetId = this.context.selectedUser;
+    console.log(targetId);
+    this.socket.emit('JoinRoom', {'room': `${this.context.user.id}to${targetId}`, 'targetId': targetId})
   }
 
   typingMessage = (handle) => {
@@ -98,6 +114,10 @@ class Home extends Component {
     //   console.log('recieved: ', msg);
     //   this.setState({ 'messages': [...this.state.messages, msg] })
     // });
+    if (this.context.selectedUser > 0) {
+      console.log('yeeeehawww');
+      this.joinRoom();
+    }
     
 
     return (

@@ -63,7 +63,7 @@ class SideBar extends React.Component{
                     : this.context.allLinks.map(user => 
                         // on click for each li or section to add the person to context "selectedUser" and open chat with selectedUser
                         <li>
-                            <section>
+                            <section className='select-user' onClick={() => this.context.selectUser(user.id)}>
                                 <div className='img-border'>
                                     <img class="img" src={user.user_thumbnail} alt="Logo"/>
                                 </div>

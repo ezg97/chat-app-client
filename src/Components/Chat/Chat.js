@@ -76,9 +76,18 @@ class Chat extends React.Component{
                     }
                     
                 </div>
-                {this.context.messages.map(msgs => 
+                {/* using messages var from context 
+                {
+                this.context.messages.map(msgs => 
                     <p className='messages'> {msgs.handle} - {msgs.content}</p>
-                )}
+                )} */}
+                {console.log('loopa', this.context.getSelectedUserId())}
+                {console.log(this.context.rooms[this.context.getSelectedUserId()].messages)}
+
+                {this.context.rooms[this.context.getSelectedUserId()].messages.map(msgs =>
+                        <p className='messages'> {msgs.handle} - {msgs.content}</p>
+                    )
+                }
                 
                 {/* </div> */}
             </div>

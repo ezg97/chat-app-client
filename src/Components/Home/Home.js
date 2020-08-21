@@ -23,6 +23,7 @@ class Home extends Component {
       typingHandle: '',
       isTyping: false,
       socketId: 0,
+      rooms: [{name: '', messages: [], sockets: []}],
       // general: [{from: 'Elijah', msg: "Hey guys"}, {from: 'Jack', msg: "Hey"}, {from: 'Al', msg: "Hi"}],
       // sports: [{from: 'Elijah', msg: "football is cool"}, {from: 'Jack', msg: "yes"}, {from: 'Al', msg: "no"}],
       // code: [{from: 'Elijah', msg: "OOP?"}, {from: 'Jack', msg: "ew"}, {from: 'Al', msg: "nah"}],
@@ -42,6 +43,24 @@ class Home extends Component {
     //listen for: Incoming Messages
     this.socket.on('message', (msg) => {
       console.log('recieved: ', msg);
+      let index = this.getSelectedUserId();
+      // this.state.rooms.find((obj,i) => {
+      //   console.log(obj.name,' AND ',`${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`)
+      //   if (obj.name === `${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`) {
+      //     console.log(true);
+      //     index = i;
+      //     return true;
+      //   }
+      // });
+
+      if(index !== undefined){
+        //updating temp updates the state for some reason so I'll leave it like this, or else i'll just setState({rooms: temp})
+        const temp = [...this.state.rooms];
+        temp[index].messages = [msg, ...temp[index].messages];
+        this.setState({
+          rooms: temp
+        });
+      }
       this.setState({ 'messages': [msg, ...this.state.messages] })
     });
 
@@ -55,14 +74,42 @@ class Home extends Component {
       this.handleIsTyping();
     });
 
-   // this.joinRoom();
+    // LISTEN: for connection being made - updates state/re-renders
+    this.socket.on('connectionMade', (room, toSocket) => {
+      console.log('on CONNECTION');
 
+      console.log(room);
+
+      // CHECK: if the room we just connected to has already been connected to in a different tab (aka already)
+      let obj = this.state.rooms.find((obj) => {
+        // if the room has already been connected
+        if (obj.name === room) {
+          console.log('have already connected to: ',room);
+          //and if the current socket hasn't connected to this room yet
+          if (!obj.sockets.includes(toSocket)) {
+            console.log('adding this socket: ',toSocket);
+            //then add this socket to the already existing room
+            this.setState({
+              rooms: [...this.state.rooms, {...obj, sockets: [...obj.sockets, toSocket]} ]
+            });
+            //this.state.rooms[i] = [...this.state.rooms, {...obj, sockets: [...obj.sockets, toSocket]}];
+          }
+          // find needs something returned if the room name does already exist
+          return true;
+        }
+      });
+     //  if this room hasn't been added to state yet, then add.
+     if (!obj) {
+       console.log('Never connected to: ', room, 'creating connection');
+        this.setState({
+          rooms: [...this.state.rooms, {name: room, messages: [], sockets: [toSocket]}]
+        });
+     }
+
+     console.log('CONNECTION HAS BEEN MADE');
+
+   });
   }
-
-
-
-
-
 
   componentDidMount() {
     console.log('HOMEJS');
@@ -71,22 +118,18 @@ class Home extends Component {
     // socket.on("FromAPI", data => {
     //   setResponse(data);
     // })
-    console.log('JOINING ROOM//')
+    // console.log('JOINING ROOM//')
   }
 
   joinRoom = () => {
-    // if (this.context.selectedUser > 0) {
-    //   console.log('yeeeeeeehawww! /.')
-    // }
     const targetId = this.context.selectedUser;
     console.log(targetId);
-    this.socket.emit('JoinRoom', {'room': `${this.context.user.id}to${targetId}`, 'targetId': targetId})
+    this.socket.emit('JoinRoom', {'room': `${Number(this.context.user.id) + Number(targetId)}to${Math.min(Number(this.context.user.id), Number(targetId))}`, 'targetId': targetId, 'myId':this.context.user.id})
   }
 
   typingMessage = (handle) => {
     console.log(`1 - sending handle because user:${handle} is typing.`);
-
-    this.socket.emit('typing', {handle, isTyping: true});
+    this.socket.emit('typing', {handle, isTyping: true, room: `${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`});
   }
 
   handleIsTyping = () => {
@@ -104,8 +147,46 @@ class Home extends Component {
         handle,
         content
       }
+      let index = this.getSelectedUserId();
+      // this.state.rooms.find((obj,i) => {
+      //   console.log(obj.name,' AND ',`${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`)
+      //   if (obj.name === `${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`) {
+      //     console.log(true);
+      //     index = i;
+      //     return true;
+      //   }
+      // });
+
+      if(index !== undefined){
+        //updating temp updates the state for some reason so I'll leave it like this, or else i'll just setState({rooms: temp})
+        const temp = [...this.state.rooms];
+        temp[index].messages = [msg, ...temp[index].messages];
+        this.setState({
+          rooms: temp
+        });
+      }
+      
+
+      // this.setState({
+
+      // })
       this.setState({ 'messages': [msg, ...this.state.messages] });
-      this.socket.emit('message', msg);
+      this.socket.emit('message', {msg, room: `${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`});
+  }
+
+  getSelectedUserId = () => {
+    let index = 0;
+    this.state.rooms.find((obj,i) => {
+      console.log(obj.sockets,' AND ',`${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`)
+      if (obj.name === `${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`) {
+        console.log(true);
+        index = i;
+        return index;
+      }
+    });
+    console.log('returning index', this.context.selectedUser);
+
+    return index;
   }
 
   render() {
@@ -121,7 +202,8 @@ class Home extends Component {
     
 
     return (
-      <Store.Provider value = {{sendMessage: this.sendMessage, typingMessage: this.typingMessage, isTyping: this.state.isTyping, typingHandle: this.state.typingHandle, messages: this.state.messages}}>
+      <Store.Provider value = {{sendMessage: this.sendMessage, typingMessage: this.typingMessage, getSelectedUserId: this.getSelectedUserId, 
+      isTyping: this.state.isTyping, typingHandle: this.state.typingHandle, messages: this.state.messages, rooms: this.state.rooms}}>
         <div className='container'>
 
         <Route exact path={['/','/home']} component={NavBar} />

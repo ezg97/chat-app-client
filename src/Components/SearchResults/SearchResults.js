@@ -40,7 +40,10 @@ class SearchResults extends React.Component{
                         <li>
                             <section>
                                 <div className='img-border'>
-                                    <img class="img" src={user.user_thumbnail} alt="Logo"/>
+                                    {this.context.activeUsers.includes(user.id)
+                                        ? <img class="img active" src={user.user_thumbnail} alt="Logo"/>
+                                        : <img class="img away" src={user.user_thumbnail} alt="Logo"/>
+                                    }
                                 </div>
                                 <p>{user.user_name}</p>
                             </section>

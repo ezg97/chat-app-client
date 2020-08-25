@@ -26,6 +26,7 @@ class App extends Component {
       allLinks: [], //names, thumbnails, ids
       searchResults: [],
       selectedUser: 0, //the ids (from database) of the users that I'm talking to
+      activeUsers: [],
       loggedIn: false,
       userHasBeenChecked: false, //this will be used to see if "authorize()" has been executed yet
       // general: [{from: 'Elijah', msg: "Hey guys"}, {from: 'Jack', msg: "Hey"}, {from: 'Al', msg: "Hi"}],
@@ -178,6 +179,13 @@ class App extends Component {
     }
   }
 
+  // This adds users that are not linked to the "allLinks" array which ultimately adds them to the side bar
+  addNonLink = (id, user_name, user_thumbnail) => {
+    this.setState({
+      allLinks: [{id,user_name,user_thumbnail}, ...this.state.allLinks]
+    });
+  }
+
   addLink = (id) => {
     console.log('linked clicked!', id);
     fetch(`http://localhost:8000/user/addLink`,
@@ -253,23 +261,29 @@ class App extends Component {
     });
   } 
 
+  updateActiveUsers = (activeUsers) => {
+    this.setState({
+      activeUsers: activeUsers
+    });
+  }
+
   render() {
 
     // this.socket.on('message', (msg) => {
     //   console.log('recieved: ', msg);
     //   this.setState({ 'messages': [...this.state.messages, msg] })
     // });
-    console.log('current state,',this.state);
+    console.log('APP.js',this.state);
 
     return (
       <Auth.Provider value = {{username: this.state.username, password: this.state.password, token: this.state.token, id: this.state.id,
        isAuthValid: false, loggedIn: this.state.loggedIn, userHasBeenChecked: this.state.userHasBeenChecked, 
        links: this.state.links, allLinks: this.state.allLinks, searchResults: this.state.searchResults, user: this.state.user,
-       selectedUser: this.state.selectedUser,
+       selectedUser: this.state.selectedUser, activeUsers: this.state.activeUsers,
        authorize: this.authorize, updateLinks: this.updateLinks, updateSearchResults: this.updateSearchResults,
        getLinks: this.getLinks, getAllLinks: this.getAllLinks,
        addLink: this.addLink, deleteLink: this.deleteLink,
-       selectUser: this.selectUser}}>
+       selectUser: this.selectUser, addNonLink: this.addNonLink, updateActiveUsers: this.updateActiveUsers}}>
         <div className='container'>
           <main className="App">
             { console.log('app state: ', this.state)}

@@ -52,8 +52,7 @@
     height: 30px;
 }
 .img{
-    border-bottom: 2px solid yellow;
-    border-right: 2px solid yellow;
+    
     border-radius: 50%;
     width: 100%;
     height: 100%;
@@ -61,6 +60,16 @@
 
     padding: 0%;
     margin: 0%;
+}
+
+.away{
+    border-bottom: 2px solid yellow;
+    border-right: 2px solid yellow;
+}
+
+.active {
+    border-bottom: 2px solid lightgreen;
+    border-right: 2px solid lightgreen;
 }
 
 .result-list li section p {

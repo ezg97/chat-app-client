@@ -39,11 +39,8 @@ class Authorization extends Component {
   
 
   render() {
-
-    // this.socket.on('message', (msg) => {
-    //   console.log('recieved: ', msg);
-    //   this.setState({ 'messages': [...this.state.messages, msg] })
-    // });
+    console.log('AUTHORIZATION JS');
+  
     //checks to see if the user has been validated. Aka, have we ran "authorized()" to even know if he's logged in or out
     if (this.context.userHasBeenChecked) {
      // console.log('has been checked');
@@ -51,21 +48,10 @@ class Authorization extends Component {
      //   console.log('logged in');
         return (
           <div className='container'>
-              {/* {console.log('PASSED UNO :')}
-              {console.log(this.context.loggedIn)} */}
-              {/* {this.context.isAuthValid = true} */}
-              {/* {console.log('OTRA VEZ:')}
-              {console.log(this.context.loggedIn)} */}
-              {/* {console.log('calling context function below:')}
-              {console.log(this.context.authorize())} */}
-              {/* {console.log('LA ULTIMA:')}
-              {console.log(this.context.loggedIn)} */}
 
             <main className="App">
               <Switch>
-                <Route exact path={['/', '/home']} component={Home} />
-                {/* <Route exact path='/login' component={Login} /> */}
-                {/* <Route exact path='/chat'  component={Chat} /> */}
+                <Route exact path={['/', '/home','/settings']} component={Home} />
                 <Route path='/' component={UnknownPage} />
               </Switch>
             </main>
@@ -77,15 +63,6 @@ class Authorization extends Component {
       //  console.log('NOT loggged in');
         return (
           <div className='container'>
-              {/* {console.log('didn\'t PASS! UNO :')}
-              {console.log(this.context.loggedIn)} */}
-              {/* {this.context.isAuthValid = true} */}
-              {/* {console.log('OTRA VEZ:')}
-              {console.log(this.context.loggedIn)} */}
-              {/* {console.log('calling context function below:')}
-              {console.log(this.context.authorize())} */}
-              {/* {console.log('LA ULTIMA:')}
-              {console.log(this.context.loggedIn)} */}
 
             <main className="App">
               <Switch>

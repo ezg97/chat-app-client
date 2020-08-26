@@ -100,6 +100,22 @@
     color: white;
   }
 
+  .submit {
+    padding: 10px;
+    font-weight: bold;
+    background-color: grey;
+    color: white;
+    font-size: 18px;
+}
+
+.submit:focus, .submit:hover{
+    cursor: pointer;
+
+    color:white;
+    background: grey;
+    box-shadow: 0 0 10px grey, 0 0 40px grey, 0 0 80px #8c9ca8;
+}
+
 
 .google {
     padding: 10px;
@@ -205,9 +221,6 @@
             font-size: 22px;
         }
 
-        .submit{
-            border: 1px solid black;
-        }
 
         .demo-info{
             font-size: 18px;

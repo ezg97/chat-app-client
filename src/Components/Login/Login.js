@@ -10,8 +10,8 @@ class Login extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            handle: '',
-            content: ''
+            password: '',
+            email: ''
         };
 
     }
@@ -21,26 +21,136 @@ class Login extends React.Component{
     
 
 
-    onChange = (handle, content, className) => {
-
-        if (handle) {
-            this.setState({
-                handle
-            });
-        }
-        if (content) {
-            this.setState({
-                content
-            });
-        }
-
-        this.isTyping()
+    onChangePassword = (password) => {
+        this.setState({
+            password
+        });
     }
 
-    isTyping = () => {
-        this.context.typingMessage(this.state.handle);
+    onChangeEmail = (email) => {
+        this.setState({
+            email
+        });
     }
 
+    btnLocal = (e) => {
+       /* e.preventDefault();
+        console.log('LOCAL clicked');
+        console.log('state: ', this.state);
+//?username=ezg@yahoo.com&password=alskdjf
+        fetch('http://localhost:8000/local/login?' + new URLSearchParams({
+            email: 'elijah@yahoo.com',
+            password: 'wakawaka97'
+        }),
+        {   method: "POST", 
+            'credentials': 'include',
+            // headers: {
+            //     'Accept': 'application/json',
+            //     'Access-Control-Allow-Origin':'http://localhost:3000',
+            //     'Content-Type': 'application/json',
+            //     'redirect': 'follow'
+            // },
+            headers: new Headers({
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000/',
+                'Content-Type': 'application/json',
+            }),
+            body: JSON.stringify( 
+                { email: this.state.email, password: this.state.password }
+            )
+        })
+        .then(res => {
+             console.log('local auth returned');
+            if(!res.ok){
+                console.log('error:', res);
+            }
+            // console.log('made it');
+            return res.json(); //the response is NOT Json
+        })
+        .then(res => {
+            console.log('local 2');
+            console.log('succsess: ', res);
+        })
+        .catch(err => {
+            console.log('ERROR: ', err);
+        })*/
+
+        e.preventDefault();
+        console.log('google clicked');
+        // let myWindow = window.open("http://localhost:8000/auth/google","google","width=600,height=800");
+
+        // console.log(myWindow);
+        // console.log(myWindow.closed);
+
+        
+
+        fetch('http://localhost:8000/auth/login/github',
+        {   method: "GET", 
+            headers: {
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Content-Type': 'applications/json',
+                'redirect': 'follow'
+            }
+        })
+        .then(res => {
+            // console.log('google 2');
+            if(!res.ok){
+                console.log('error:', res);
+            }
+            // console.log('made it');
+            return res.json(); //the response is NOT Json
+        })
+        .then(res => {
+            // console.log('succsess: ', res);
+            let myWindow = window.location.href="http://localhost:8000/auth/github";
+
+            console.log(myWindow);
+            // console.log(myWindow.closed);
+            
+
+        })
+        .catch(err => {
+            console.log('ERROR: ', err);
+        })
+     }
+
+     //TWITCH
+     btnTwitch = (e) => {
+        e.preventDefault();
+        console.log('twitch clicked');
+
+        //this don't matter bc it gonna return nothing so we can open a new tab
+        fetch('http://localhost:8000/auth/login/github',
+        {   method: "GET", 
+            headers: {
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Content-Type': 'applications/json',
+                'redirect': 'follow'
+            }
+        })
+        .then(res => {
+            // console.log('google 2');
+            if(!res.ok){
+                console.log('error:', res);
+            }
+            // console.log('made it');
+            return res.json(); //the response is NOT Json
+        })
+        .then(res => {
+            // console.log('succsess: ', res);
+            let myWindow = window.location.href="http://localhost:8000/auth/twitch";
+
+            console.log(myWindow);
+            // console.log(myWindow.closed);
+            
+
+        })
+        .catch(err => {
+            console.log('ERROR: ', err);
+        })
+     }
 
     btnGoogle = (e) => {
         e.preventDefault();
@@ -83,6 +193,42 @@ class Login extends React.Component{
         })
      }
 
+
+     btnLinkedIn = (e) => {
+        e.preventDefault();
+        console.log('linkedin clicked');
+
+        //this don't matter bc it gonna return nothing so we can open a new tab
+        fetch('http://localhost:8000/auth/login/github',
+        {   method: "GET", 
+            headers: {
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Content-Type': 'applications/json',
+                'redirect': 'follow'
+            }
+        })
+        .then(res => {
+            // console.log('google 2');
+            if(!res.ok){
+                console.log('error:', res);
+            }
+            // console.log('made it');
+            return res.json(); //the response is NOT Json
+        })
+        .then(res => {
+            // console.log('succsess: ', res);
+            let myWindow = window.location.href="http://localhost:8000/auth/linkedin";
+
+            console.log(myWindow);
+            // console.log(myWindow.closed);
+            
+
+        })
+        .catch(err => {
+            console.log('ERROR: ', err);
+        })
+     }
     render() {
 
         
@@ -96,15 +242,15 @@ class Login extends React.Component{
 
                 <section className="section-form">
                     <div className="section-form-inner">
-                        <label htmlFor="business_name">Business Name:</label>
+                        <label htmlFor="business_name">Email:</label>
                         {/* Name INPUT */}
                         <input 
                             type="text"
                             className="name-box" 
                             name="business_name" 
                             id="business_name" 
-                            value={this.state.business_name}
-                            onChange={(e) => this.updateBusinessName(e.target.value)}
+                            value={this.state.email}
+                            onChange={(e) => this.onChangeEmail(e.target.value)}
                         />
                     </div>
 
@@ -119,16 +265,20 @@ class Login extends React.Component{
                             name="password" 
                             id="password" 
                             value={this.state.password}
-                            onChange={(e) => this.updatePassword(e.target.value)}
+                            onChange={(e) => this.onChangePassword(e.target.value)}
                         />
                     </div>
                 </section>
                 
 
-                <button type='submit' className='submit'>Submit</button>
+                <button type='submit' className='submit' onClick={(e) => this.btnLocal(e)}>Github</button>
 
                 <section>
                     <button className='google' onClick={(e) => this.btnGoogle(e)}>Google</button>
+                    <button className='submit' onClick={(e) => this.btnTwitch(e)}>Twitch</button>
+                    <button className='submit' onClick={(e) => this.btnLinkedIn(e)}>LinkedIn</button>
+
+
                 </section>
                 <section className={this.state.errorClass}>
                     <p>{this.state.errorMessage}</p>

@@ -38,14 +38,14 @@ class SearchResults extends React.Component{
                     : this.context.searchResults.map(user => 
                         // on click for each li or section to add the person to context "selectedUser" and open chat with selectedUser
                         <li>
-                            <section>
+                            <section className='select-user' onClick={() => this.context.selectUser(user.id)}>
                                 <div className='img-border'>
                                     {this.context.activeUsers.includes(user.id)
                                         ? <img class="img active" src={user.user_thumbnail} alt="Logo"/>
                                         : <img class="img away" src={user.user_thumbnail} alt="Logo"/>
                                     }
                                 </div>
-                                <p>{user.user_name}</p>
+                                <p className="user_name" tabindex={0}>{user.user_name}</p>
                             </section>
                             {/* open lock: &#128275;  closed lock: &#128274; */}
                             {/* if the searched user is one of the user links then... */}

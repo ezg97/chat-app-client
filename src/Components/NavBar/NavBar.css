@@ -18,13 +18,14 @@
 
 }
 
-.app_nav ul {
-    border: 1px solid red;
+.app_nav > ul {
     font-size: 1rem;
-
+    cursor: pointer;
     display: flex;
-    
+}
 
+.app_nav > ul:hover, .app_nav > ul:focus {
+  color: lightblue;
 }
 
 .app_nav ul li {

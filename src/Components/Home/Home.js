@@ -9,7 +9,7 @@ import Chat from '../Chat/Chat'
 import SideBar from '../SideBar/SideBar';
 import NavBar from '../NavBar/NavBar';
 import SearchResults from '../SearchResults/SearchResults';
-import Settings from '../Settings/Settings';
+import Dashboard from '../Dashboard/Dashboard';
 
 
 class Home extends Component {
@@ -303,10 +303,9 @@ class Home extends Component {
             {/* if there are no search results then load the chat, if there are then load the results */}
             {this.context.searchResults.length === 0
               ?<Switch>
-                  <Route exact path={'/settings'} component={Settings}/>
                   {(this.context.selectedUser > 0)
                     ? <Route exact path={['/','/home']} component={Chat} />
-                    : <Route exact path={['/','/home']} component={Chat} />
+                    : <Route exact path={['/','/home']} component={Dashboard} />
                   
                   }
                   

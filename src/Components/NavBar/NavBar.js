@@ -46,10 +46,16 @@ class NavBar extends React.Component{
     });
     }
 
+    onHomeClick = () => {
+        //pass empty string and zero that way in Home.js the homepage will load
+        this.context.updateSearchResults('');
+        this.context.selectUser(0);
+    }
+
     render() {
         return(
         <nav className = 'app_nav'>
-            <ul>
+            <ul tabindex={0} onClick={() => this.onHomeClick()}>
               <li><p>&#128490;</p></li>
               <li><h3>Chat App</h3></li>
             </ul>
@@ -60,7 +66,7 @@ class NavBar extends React.Component{
                 </div> 
                 <div className="dropdown-content" tabindex={0}>
                     <a href="#" tabindex={0}>Dark Mode</a>
-                    <NavLink to='/settings'>Settings</NavLink>
+                    <a href="#" tabindex={0}>Settings</a>
                     <a onClick={() => this.logout()}>Logout</a>
                 </div>   
             </div>     

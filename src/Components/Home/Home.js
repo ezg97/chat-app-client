@@ -71,7 +71,7 @@ class Home extends Component {
 
         let exists = false;
         this.context.allLinks.find((obj, i) => {
-          if (obj.id = msg.user.id) {
+          if (obj.id === msg.user.id) {
             exists = true;
           }
         });
@@ -191,7 +191,8 @@ class Home extends Component {
     console.log('in send message');
       let msg = {
         handle,
-        content
+        content,
+        id
       }
       let user = {
         id,

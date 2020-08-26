@@ -102,7 +102,23 @@ class Chat extends React.Component{
                         ELSE:   Nothing, no user has been selected. */}
                 {(this.context.getSelectedUserId() >= 0)
                     ? this.context.rooms[this.context.getSelectedUserId()].messages.map(msgs =>
-                         <p className='messages'> {msgs.handle} - {msgs.content}</p>
+                        (msgs.id == this.context.id)
+                            ?<p className='messages'> <span className='meta'>{msgs.handle}</span>
+                            <span className='text-message'>{msgs.content}</span></p>
+                            :<p className='messages-right'> <span className='meta-right'>{msgs.handle}</span>
+                            <span className='text-message'>{msgs.content}</span></p>
+                         
+                        // <>
+                        // {console.log('attn: ', msgs.handle)}
+                        /* <p className='messages'> <span className='meta'>{msgs.handle}</span>
+                         <span className='text-message'>{msgs.content}</span></p>
+                         </> */
+                        // (msgs.id == this.context.user.id)
+                            // ?<p className='messages'> <span className='meta'>{msgs.handle}</span>
+                            // <span className='text-message'>{msgs.content}</span></p>
+                            // :<p className='messages-right'> <span className='meta-right'>{msgs.handle}</span>
+                            // <span className='text-message'>{msgs.content}</span></p>
+                         
                     )
                     : <p className='messages'> User is offline and cannot receive messages right now.</p>
                 }

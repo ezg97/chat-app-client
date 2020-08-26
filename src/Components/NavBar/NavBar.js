@@ -58,7 +58,7 @@ class NavBar extends React.Component{
                 <div className='img-border'>
                     <img className="img profile" src={this.context.user.user_thumbnail} alt="Logo"/>
                 </div> 
-                <div class="dropdown-content" tabindex={0}>
+                <div className="dropdown-content" tabindex={0}>
                     <a href="#" tabindex={0}>Dark Mode</a>
                     <NavLink to='/settings'>Settings</NavLink>
                     <a onClick={() => this.logout()}>Logout</a>

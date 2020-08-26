@@ -57,12 +57,13 @@ class SideBar extends React.Component{
         <div className='page sidebar'>
 
             {/* <Route exact path={['/','/home']} component={SearchBar} /> */}
+            <div>
             <ul className='link-list'>
                 {this.context.allLinks.length === 0
                     ? null
                     : this.context.allLinks.map(user => 
                         // on click for each li or section to add the person to context "selectedUser" and open chat with selectedUser
-                        <li>
+                        <li className="user_element">
                             <section className='select-user' onClick={() => this.context.selectUser(user.id)}>
                                 <div className='img-border'>
                                     {this.context.activeUsers.includes(user.id)
@@ -70,7 +71,7 @@ class SideBar extends React.Component{
                                         : <img class="img away" src={user.user_thumbnail} alt="Logo"/>
                                     }
                                 </div>
-                                <p>{user.user_name}</p>
+                                <p className="user_name" tabindex={0}>{user.user_name}</p>
                             </section>
                             {/* <div className='lock-wrap del' onClick={() => this.context.deleteLink(user.id)}>
                                 <div className='lock'>
@@ -98,6 +99,7 @@ class SideBar extends React.Component{
                         </li>
                     )}
               </ul>
+              </div>
         </div>
         );
     }

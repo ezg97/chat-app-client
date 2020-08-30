@@ -24,6 +24,7 @@ class Home extends Component {
       typingHandle: '',
       isTyping: false,
       socketId: 0,
+      typingId: 0,
       rooms: [],
       // general: [{from: 'Elijah', msg: "Hey guys"}, {from: 'Jack', msg: "Hey"}, {from: 'Al', msg: "Hi"}],
       // sports: [{from: 'Elijah', msg: "football is cool"}, {from: 'Jack', msg: "yes"}, {from: 'Al', msg: "no"}],
@@ -38,9 +39,14 @@ class Home extends Component {
     this.socket.on('id', id => {
       console.log('id is in: ',id);
       this.setState({socketId: id});
-      this.socket.emit('addUser', this.context.user.id);
+      console.log('ztopia', {id: this.context.user.id, user_name: this.context.user.user_name, user_thumbnail: this.context.user.user_thumbnail });
+      this.socket.emit('addUser', {id: this.context.user.id, user_name: this.context.user.user_name, user_thumbnail: this.context.user.user_thumbnail });
     });
 
+    this.socket.on('topActiveUsers', topActiveUsers => {
+      console.log('zpoptropica', topActiveUsers);
+      this.context.updateTopActiveUsers(topActiveUsers);
+    })
 
     //listen for: Incoming Messages
     this.socket.on('message', (msg) => {
@@ -84,6 +90,17 @@ class Home extends Component {
         }
       }
 
+      /*  - - - - - - - - - - - - -
+              MESSAGE ALERTS  
+          - - - - - - - - - - - - -
+      */
+
+      // If the chat is not open (thus we have not read the message) 
+      if (this.context.selectedUser !== msg.user.id) {
+        //add the user's id to the unread array
+        this.context.updateUnread(msg.user.id);
+      }
+
       //ELSE: listen for messages from links I haven't selected yet, or users I've NEVER linked to!!!!
 
       //messages array has been depricated
@@ -96,6 +113,7 @@ class Home extends Component {
 
       console.log('3 - RECEIVED FROM SERVER THAT THIS USER IS NOW TYPING: ' + obj.typing);
       this.setState({
+        typingId: obj.id,
         typingHandle: obj.handle,
         isTyping: obj.typing
       });
@@ -174,7 +192,7 @@ class Home extends Component {
 
   typingMessage = (handle) => {
     console.log(`1 - sending handle because user:${handle} is typing.`);
-    this.socket.emit('typing', {handle, isTyping: true, room: `${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`});
+    this.socket.emit('typing', {handle, id:this.context.user.id, isTyping: true, room: `${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`});
   }
 
   handleIsTyping = () => {
@@ -187,7 +205,8 @@ class Home extends Component {
     }, 3000);
 }
 
-  sendMessage = (handle, content, id, thumbnail) => {
+  sendMessage = (e, handle, content, id, thumbnail) => {
+    e.preventDefault();
     console.log('in send message');
       let msg = {
         handle,
@@ -291,7 +310,8 @@ class Home extends Component {
       <Store.Provider value = {{sendMessage: this.sendMessage, typingMessage: this.typingMessage, getSelectedUserId: 
         this.getSelectedUserId, onContentChange: this.onContentChange,
       isTyping: this.state.isTyping, typingHandle: this.state.typingHandle, messages: this.state.messages, rooms: this.state.rooms,
-      user_name: this.context.user.user_name, id: this.context.user.id, user_thumbnail: this.context.user.user_thumbnail}}>
+      user_name: this.context.user.user_name, id: this.context.user.id, user_thumbnail: this.context.user.user_thumbnail,
+      typingId: this.state.typingId, selectedUser: this.context.selectedUser}}>
         <div className='container'>
 
         <Route exact path={['/','/home','/settings']} component={NavBar} />

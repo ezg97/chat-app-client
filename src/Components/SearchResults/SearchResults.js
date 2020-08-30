@@ -33,8 +33,9 @@ class SearchResults extends React.Component{
             {/* <Route exact path={['/','/home']} component={SearchBar} /> */}
 
             <ul className='result-list'>
-                {this.context.searchResults.length === 0
-                    ? null
+                {/* searchResults array will never be zero length, because for this page to be rendered, the length must be greater than zero */}
+                {this.context.searchResults[0] === 'No results found'
+                    ? <p>No results found...</p>
                     : this.context.searchResults.map(user => 
                         // on click for each li or section to add the person to context "selectedUser" and open chat with selectedUser
                         <li>
@@ -71,6 +72,10 @@ class SearchResults extends React.Component{
                         </li>
                     )}
             </ul>
+            {this.context.searchResults[0] === 'No results found'
+                ? null
+                : <p>Search results related to <strong>{this.context.searched}</strong></p>
+            }
             
           
         </div>

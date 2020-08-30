@@ -59,12 +59,23 @@ class SideBar extends React.Component{
             {/* <Route exact path={['/','/home']} component={SearchBar} /> */}
             <div>
             <ul className='link-list'>
+                <li className="sidebar_title">
+                    <h2>Links</h2>
+                </li>
                 {this.context.allLinks.length === 0
-                    ? null
+                    ? <p>No links, search for someone you know...</p>
                     : this.context.allLinks.map(user => 
                         // on click for each li or section to add the person to context "selectedUser" and open chat with selectedUser
-                        <li className="user_element">
+                        <li className="list_item">
+                        
                             <section className='select-user' onClick={() => this.context.selectUser(user.id)}>
+                                {(this.context.unread.includes(user.id))
+                                    ?<div className="badge">
+                                        <button className="Numberbadge">1</button>
+                                    </div>
+                                    :null
+                                }
+                                
                                 <div className='img-border'>
                                     {this.context.activeUsers.includes(user.id)
                                         ? <img class="img active" src={user.user_thumbnail} alt="Logo"/>
@@ -72,6 +83,9 @@ class SideBar extends React.Component{
                                     }
                                 </div>
                                 <p className="user_name" tabindex={0}>{user.user_name}</p>
+                                {/* <div className="testing"> */}
+                                    
+                                {/* </div> */}
                             </section>
                             {/* <div className='lock-wrap del' onClick={() => this.context.deleteLink(user.id)}>
                                 <div className='lock'>
@@ -97,6 +111,7 @@ class SideBar extends React.Component{
                                     </div>   
                             }
                         </li>
+                                                
                     )}
               </ul>
               </div>

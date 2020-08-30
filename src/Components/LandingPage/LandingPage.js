@@ -2,6 +2,7 @@ import React from 'react';
 import './LandingPage.css';
 import { Route, NavLink } from 'react-router-dom';
 
+import LoginContext from '../../ContextAPI/LoginContext';
 
 
 class LandingPage extends React.Component{
@@ -9,20 +10,225 @@ class LandingPage extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            handle: '',
-            content: ''
+            password: '',
+            email: ''
         };
 
     }
 
+    static contextType = LoginContext;
 
-    // componentDidMount(){
-    //     let title = document.querySelectorAll("#title path");
-    //     for (let path=0; path<title.length; path++) {
-    //         console.log(`Letter ${path} = ${title[path].getTotalLength()}`);
-    //     }
+    
 
-    // }
+
+    onChangePassword = (password) => {
+        this.setState({
+            password
+        });
+    }
+
+    onChangeEmail = (email) => {
+        this.setState({
+            email
+        });
+    }
+
+    btnLocal = (e) => {
+       /* e.preventDefault();
+        console.log('LOCAL clicked');
+        console.log('state: ', this.state);
+//?username=ezg@yahoo.com&password=alskdjf
+        fetch('http://localhost:8000/local/login?' + new URLSearchParams({
+            email: 'elijah@yahoo.com',
+            password: 'wakawaka97'
+        }),
+        {   method: "POST", 
+            'credentials': 'include',
+            // headers: {
+            //     'Accept': 'application/json',
+            //     'Access-Control-Allow-Origin':'http://localhost:3000',
+            //     'Content-Type': 'application/json',
+            //     'redirect': 'follow'
+            // },
+            headers: new Headers({
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000/',
+                'Content-Type': 'application/json',
+            }),
+            body: JSON.stringify( 
+                { email: this.state.email, password: this.state.password }
+            )
+        })
+        .then(res => {
+             console.log('local auth returned');
+            if(!res.ok){
+                console.log('error:', res);
+            }
+            // console.log('made it');
+            return res.json(); //the response is NOT Json
+        })
+        .then(res => {
+            console.log('local 2');
+            console.log('succsess: ', res);
+        })
+        .catch(err => {
+            console.log('ERROR: ', err);
+        })*/
+
+        e.preventDefault();
+        console.log('google clicked');
+        // let myWindow = window.open("http://localhost:8000/auth/google","google","width=600,height=800");
+
+        // console.log(myWindow);
+        // console.log(myWindow.closed);
+
+        
+
+        fetch('http://localhost:8000/auth/login/github',
+        {   method: "GET", 
+            headers: {
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Content-Type': 'applications/json',
+                'redirect': 'follow'
+            }
+        })
+        .then(res => {
+            // console.log('google 2');
+            if(!res.ok){
+                console.log('error:', res);
+            }
+            // console.log('made it');
+            return res.json(); //the response is NOT Json
+        })
+        .then(res => {
+            // console.log('succsess: ', res);
+            let myWindow = window.location.href="http://localhost:8000/auth/github";
+
+            console.log(myWindow);
+            // console.log(myWindow.closed);
+            
+
+        })
+        .catch(err => {
+            console.log('ERROR: ', err);
+        })
+     }
+
+     //TWITCH
+     btnTwitch = (e) => {
+        e.preventDefault();
+        console.log('twitch clicked');
+
+        //this don't matter bc it gonna return nothing so we can open a new tab
+        fetch('http://localhost:8000/auth/login/github',
+        {   method: "GET", 
+            headers: {
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Content-Type': 'applications/json',
+                'redirect': 'follow'
+            }
+        })
+        .then(res => {
+            // console.log('google 2');
+            if(!res.ok){
+                console.log('error:', res);
+            }
+            // console.log('made it');
+            return res.json(); //the response is NOT Json
+        })
+        .then(res => {
+            // console.log('succsess: ', res);
+            let myWindow = window.location.href="http://localhost:8000/auth/twitch";
+
+            console.log(myWindow);
+            // console.log(myWindow.closed);
+            
+
+        })
+        .catch(err => {
+            console.log('ERROR: ', err);
+        })
+     }
+
+    btnGoogle = (e) => {
+        e.preventDefault();
+        console.log('google clicked');
+        // let myWindow = window.open("http://localhost:8000/auth/google","google","width=600,height=800");
+
+        // console.log(myWindow);
+        // console.log(myWindow.closed);
+
+        
+
+        fetch('http://localhost:8000/auth/login/google',
+        {   method: "GET", 
+            headers: {
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Content-Type': 'applications/json',
+                'redirect': 'follow'
+            }
+        })
+        .then(res => {
+            // console.log('google 2');
+            if(!res.ok){
+                console.log('error:', res);
+            }
+            // console.log('made it');
+            return res.json(); //the response is NOT Json
+        })
+        .then(res => {
+            // console.log('succsess: ', res);
+            let myWindow = window.location.href="http://localhost:8000/auth/google";
+
+            console.log(myWindow);
+            // console.log(myWindow.closed);
+            
+
+        })
+        .catch(err => {
+            console.log('ERROR: ', err);
+        })
+     }
+
+
+     btnLinkedIn = (e) => {
+        e.preventDefault();
+        console.log('linkedin clicked');
+
+        //this don't matter bc it gonna return nothing so we can open a new tab
+        fetch('http://localhost:8000/auth/login/github',
+        {   method: "GET", 
+            headers: {
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Content-Type': 'applications/json',
+                'redirect': 'follow'
+            }
+        })
+        .then(res => {
+            // console.log('google 2');
+            if(!res.ok){
+                console.log('error:', res);
+            }
+            // console.log('made it');
+            return res.json(); //the response is NOT Json
+        })
+        .then(res => {
+            // console.log('succsess: ', res);
+            let myWindow = window.location.href="http://localhost:8000/auth/linkedin";
+
+            console.log(myWindow);
+            // console.log(myWindow.closed);
+            
+
+        })
+        .catch(err => {
+            console.log('ERROR: ', err);
+        })
+     }
 
     handleDownButton = () => {
 
@@ -56,10 +262,24 @@ class LandingPage extends React.Component{
             </header>
 
             <section className='buttons'>
-                <NavLink to='/login'>Sign up</NavLink>
-                <NavLink to='/login'>Log in</NavLink>
-            </section>
+                {/* <NavLink to='/login'>Sign up</NavLink>
+                <NavLink to='/login'>Log in</NavLink> */}
 
+
+                <section className='oauth-btns'>
+                    <button className='oauth github'  onClick={(e) => this.btnLocal(e)}>Github</button>
+                    <button className='oauth google' onClick={(e) => this.btnGoogle(e)}>Google</button>
+                    <button className='oauth twitch' onClick={(e) => this.btnTwitch(e)}>Twitch</button>
+                    <button className='oauth linkedin' onClick={(e) => this.btnLinkedIn(e)}>LinkedIn</button>
+
+
+                </section>
+                <section className={this.state.errorClass}>
+                    <p>{this.state.errorMessage}</p>
+                </section>
+
+            </section>
+{/* 
             <section>
                 <button className='down-bar' onClick={() => this.handleDownButton()}>v</button>
             </section>
@@ -86,7 +306,7 @@ class LandingPage extends React.Component{
                 <section>
                     <p>Lorem10  dsflakdsjf ;lsadjf; lkdfja ldskfjads lkfjdsalkf ;jdsalkf ja;ldskf j;lkdsf ;jalskfd j;alfds  </p> 
                 </section>
-            </section>
+            </section> */}
 
         </div>
         );

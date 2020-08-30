@@ -21,7 +21,6 @@
     background-color: rgb(32, 35, 48);
     border: 1px solid rgb(32, 35, 48);
 
-    border :1px solid green;
 
     display: flex;
     flex-direction: column;
@@ -98,6 +97,8 @@
 
     margin: 5vw auto;
 
+    width: 100%;
+
 }
 
 .buttons button, .buttons a{
@@ -110,8 +111,7 @@
     cursor: default;
     
 
-    background-color: white;
-    color: rgb(32, 35, 48);
+    /* background-color: white; */
     text-decoration: none;
 
     border-radius: 5px;
@@ -127,6 +127,82 @@ button:hover, button:focus, a:hover, a:focus{
     box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #8c9ca8;
 }
 
+/* google */
+.google {
+    padding: 10px;
+    font-weight: bold;
+    background-color: tomato;
+    color: white;
+    font-size: 18px;
+}
+
+
+.google:focus, .google:hover{
+    cursor: pointer;
+
+    color:white;
+    background: tomato;
+    box-shadow: 0 0 10px tomato, 0 0 40px tomato, 0 0 80px #8c9ca8;
+}
+
+/* TWITCH */
+.twitch {
+    padding: 10px;
+    font-weight: bold;
+    background-color: mediumorchid;
+    color: white;
+    font-size: 18px;
+}
+
+.twitch:focus, .twitch:hover{
+    cursor: pointer;
+
+    color:white;
+    background: mediumorchid;
+    box-shadow: 0 0 10px mediumorchid, 0 0 40px mediumorchid, 0 0 80px #8c9ca8;
+}
+
+/* linkedin */
+.linkedin {
+    padding: 10px;
+    font-weight: bold;
+    background-color: #2196f3;
+    color: white;
+    font-size: 18px;
+}
+
+.linkedin:focus, .linkedin:hover{
+    cursor: pointer;
+
+    color:white;
+    background: #2196f3;
+    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #8c9ca8;
+}
+
+/* github */
+.github {
+    padding: 10px;
+    font-weight: bold;
+    background-color: grey;
+    color: white;
+    font-size: 18px;
+}
+
+.github:focus, .github:hover{
+    cursor: pointer;
+
+    color:white;
+    background: grey;
+    box-shadow: 0 0 10px grey, 0 0 40px grey, 0 0 80px #8c9ca8;
+}
+
+.oauth-btns {
+    width: 100%;
+}
+
+.oauth {
+    margin: 5px;
+}
 /* 5. Down bar */
     .down-bar{
         position: absolute;

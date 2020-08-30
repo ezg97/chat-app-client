@@ -25,9 +25,12 @@ class App extends Component {
       links: [], //ids
       allLinks: [], //names, thumbnails, ids
       searchResults: [],
+      topActiveUsers: [],
       selectedUser: 0, //the ids (from database) of the users that I'm talking to
       activeUsers: [],
+      searched: '',
       loggedIn: false,
+      unread: [],//store the rooms that have unread messages
       userHasBeenChecked: false, //this will be used to see if "authorize()" has been executed yet
       // general: [{from: 'Elijah', msg: "Hey guys"}, {from: 'Jack', msg: "Hey"}, {from: 'Al', msg: "Hi"}],
       // sports: [{from: 'Elijah', msg: "football is cool"}, {from: 'Jack', msg: "yes"}, {from: 'Al', msg: "no"}],
@@ -247,6 +250,20 @@ class App extends Component {
     //clear search results or else the chat page won't be rendered... note: for some reason I can't pass an empty array to the method
     //so I passed an empty string because: ''.length is equal to zero so it operates like an empty array []
     this.updateSearchResults('');
+    console.log('1st unread',this.state.unread);
+
+    //clear the unread messages
+    if (this.state.unread.includes(id)) {
+      this.state.unread.splice(this.state.unread.indexOf(id), 1);
+      console.log('2nd unread',this.state.unread);
+
+    }
+  }
+
+  updateSearched = (text) => {
+    this.setState({
+      searched: text
+    });
   }
 
   updateLinks = (userLinks) => {
@@ -267,6 +284,18 @@ class App extends Component {
     });
   }
 
+  updateTopActiveUsers = (users) => {
+    this.setState({
+      topActiveUsers: users
+    });
+  }
+
+  updateUnread = (update) => {
+    this.setState({
+      unread: [update, ...this.state.unread]
+    });
+  }
+
   render() {
 
     // this.socket.on('message', (msg) => {
@@ -279,11 +308,13 @@ class App extends Component {
       <Auth.Provider value = {{username: this.state.username, password: this.state.password, token: this.state.token, id: this.state.id,
        isAuthValid: false, loggedIn: this.state.loggedIn, userHasBeenChecked: this.state.userHasBeenChecked, 
        links: this.state.links, allLinks: this.state.allLinks, searchResults: this.state.searchResults, user: this.state.user,
-       selectedUser: this.state.selectedUser, activeUsers: this.state.activeUsers,
+       selectedUser: this.state.selectedUser, activeUsers: this.state.activeUsers, topActiveUsers: this.state.topActiveUsers,
+       unread: this.state.unread, searched: this.state.searched,
        authorize: this.authorize, updateLinks: this.updateLinks, updateSearchResults: this.updateSearchResults,
        getLinks: this.getLinks, getAllLinks: this.getAllLinks,
-       addLink: this.addLink, deleteLink: this.deleteLink,
-       selectUser: this.selectUser, addNonLink: this.addNonLink, updateActiveUsers: this.updateActiveUsers}}>
+       addLink: this.addLink, deleteLink: this.deleteLink, updateTopActiveUsers: this.updateTopActiveUsers, 
+       selectUser: this.selectUser, addNonLink: this.addNonLink, updateActiveUsers: this.updateActiveUsers,
+       updateUnread: this.updateUnread, updateSearched: this.updateSearched}}>
         <div className='container'>
           <main className="App">
             { console.log('app state: ', this.state)}

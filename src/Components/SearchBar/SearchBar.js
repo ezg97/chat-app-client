@@ -84,7 +84,15 @@ class SearchBar extends React.Component{
             })
             .then (results => {
                 console.log({results});
-                this.context.updateSearchResults(results);
+                console.log(results)
+                console.log(results.length === 0);
+                if(results.length === 0){
+                    this.context.updateSearchResults(['No results found']);
+                }
+                else {
+                    this.context.updateSearchResults(results);
+                    this.context.updateSearched(this.state.text);
+                }
                         // if (Object.keys(matchedUsers).length > 0) {
                         //     this.context.updateLinks({matchedUsers});
                         // }

@@ -2,8 +2,137 @@
     width: 68%;
     /* height: calc(100% - 2.2em); */
     background-color: black;
-    padding-top: 3.4em;
 
-
+    /* background-image: 
+        linear-gradient(
+            rgba(0, 0, 0, .9),
+            rgba(0, 0, 0, .5)
+        ),
+        url("https://image.shutterstock.com/image-vector/vector-neon-speech-bubble-on-260nw-585904949.jpg");
+        
+  /* Center and scale the image nicely 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid red; */
+  /* margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #060c21; */
 
 }
+
+.box {
+    height: 80%;
+    width: 90%;
+    border: 2px solid whitesmoke;
+    background-color: rgb(32, 35, 48);
+    box-shadow: 0 0 10px white, 0 0 40px white, 0 0 80px #8c9ca8;
+
+    border-radius: 10px;
+    /*background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;*/
+}
+
+/* 
+.box:before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: 4;
+
+} */
+/*
+.info-box:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -2;
+    filter: blur(40px);
+} */
+
+.dashboard-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 95%;
+    padding-top: 10%;
+}
+
+.topUsersTitle {
+    border-bottom: 1px solid lightblue;
+    display: inline;
+}
+/* .dashboard-section > h2 {
+
+    border-bottom: 1px solid lightblue;
+
+} */
+
+.topActiveUsers {
+    list-style-type: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 10px;
+}
+
+.topActiveUsers > li {
+    line-height: 1.5;
+}
+
+.none {
+    padding-top: 20%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.welcome {
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+/* .welcome {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: relative;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-size: 2em;
+    letter-spacing: 4px;
+    overflow: hidden;
+    background: linear-gradient(90deg, #000, #fff, #000);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: animate 3s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  }
+   */
+  @keyframes animate {
+    0% {
+      background-position: -500%;
+    }
+    100% {
+      background-position: 500%;
+    }
+  }

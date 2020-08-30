@@ -83,7 +83,9 @@ class Chat extends React.Component{
                 {/* <div id='output'> */}
                 <div className="typing" ref={ this.myRef }>
                     {this.context.isTyping
-                        ? <p>{`${this.context.typingHandle}`} is typing...</p>
+                        ? this.context.typingId === this.context.selectedUser
+                            ? <p>{`${this.context.typingHandle}`} is typing...</p>
+                            : null
                         : null
                     }
                     
@@ -120,7 +122,7 @@ class Chat extends React.Component{
                             // <span className='text-message'>{msgs.content}</span></p>
                          
                     )
-                    : <p className='messages'> User is offline and cannot receive messages right now.</p>
+                    : <p className='offline'> User is offline and cannot receive messages right now.</p>
                 }
                 
                 {/* </div> */}
@@ -128,10 +130,15 @@ class Chat extends React.Component{
             {/* <input id='handle' onChange={(event) => this.onChange(event.target.value, null, event)} type='text' placeholder='Handle'> */}
             {/* </input> */}
             {(this.context.getSelectedUserId() >= 0)
-            ?   <>
-                    <input id='message' onChange={(event) => this.onChange(event.target.value)}  type='text' placeholder='Message' value={this.context.user_name, this.context.getSelectedUserId() >= 0? this.context.rooms[this.context.getSelectedUserId()].content : null}></input>
-                    <button id="send" onClick={() => this.context.sendMessage(this.context.user_name, this.context.getSelectedUserId() >= 0? this.context.rooms[this.context.getSelectedUserId()].content : null, this.context.id, this.context.user_thumbnail)}>Send</button>
-                </>
+            ?   <div className='text-area'>
+                    <textarea rows="3" id='message' 
+                        onKeyDown={(e) => e.keyCode === 13 && !e.shiftKey ? this.context.sendMessage(e, this.context.user_name, this.context.getSelectedUserId() >= 0? this.context.rooms[this.context.getSelectedUserId()].content : null, this.context.id, this.context.user_thumbnail) : null} 
+                        onChange={(event) => this.onChange(event.target.value)}  
+                        type='text' placeholder='Message' 
+                        value={this.context.user_name, this.context.getSelectedUserId() >= 0? this.context.rooms[this.context.getSelectedUserId()].content : null}>
+                     </textarea>
+                    <button className={'send-button'} id="send" onClick={(e) => this.context.sendMessage(e, this.context.user_name, this.context.getSelectedUserId() >= 0? this.context.rooms[this.context.getSelectedUserId()].content : null, this.context.id, this.context.user_thumbnail)}><i class="far fa-paper-plane"></i>{/*&#11165;*/}</button>
+                </div>
             : null
             }
         </div>

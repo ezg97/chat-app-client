@@ -29,10 +29,29 @@ class Dashboard extends Component {
         <div className='page dashboard'>
             {/* {console.log('PASSED UNO :')} */}
        
+            <div className='box'>
+               
+                <div>
+                    <h1 className={'welcome'}> Welcome </h1>   
 
-            <main className="App">
-                <h2> Welcome {this.context.user.user_name}</h2>         
-            </main>
+                    {this.context.topActiveUsers.length > 0
+                        ?<section className="dashboard-section">
+                            <h2 className={'topUsersTitle'}>Active Users</h2>
+                            <ul className = {'topActiveUsers'}>
+                                {this.context.topActiveUsers.map((obj,i) =>
+                                    <li><h4>{i+1}: {obj.user_name}</h4></li>
+                                ) }
+                                <li>
+
+                                </li>
+                            </ul>
+                        </section>  
+                        :<h2 className={'none'}>There are currently no active users online</h2>    
+                    }
+                </div>
+                {/*this.context.user.user_name*/}
+                {/*Top {this.context.topActiveUsers.length*/}
+            </div>
 
         </div>
       );

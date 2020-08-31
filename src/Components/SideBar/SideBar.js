@@ -12,7 +12,8 @@ class SideBar extends React.Component{
         super(props);
         this.state = {
             handle: '',
-            content: ''
+            content: '',
+            classMobile: '',
         };
 
     }
@@ -49,13 +50,35 @@ class SideBar extends React.Component{
         
     }
 
-    
+    updateClass = (updatedClass) => {
+        console.log('updated class',updatedClass)
+        this.setState({
+            classMobile: updatedClass
+        });
+    }
 
     render() {
 
-        return(
-        <div className='page sidebar'>
+        
 
+        return(
+        <>
+        {/* IF there are no search results AND no selected user
+            THEN it's the home page and the classname needs to show "mobile" so that css can update to show 100% width on mobile devices
+            */}
+        
+
+        {((this.context.searchResults.length === 0) && (this.context.selectedUser < 1))
+            ?  (this.state.classMobile === 'mobile')
+                ? null
+                : this.updateClass('mobile') 
+            : (this.state.classMobile === 'mobile')
+                ? this.updateClass('') 
+                : null  
+        }
+
+        <div className={`page sidebar ${this.state.classMobile}`}>
+        {console.log('mobile state: ',this.state.classMobile)}
             {/* <Route exact path={['/','/home']} component={SearchBar} /> */}
             <div>
             <ul className='link-list'>
@@ -116,6 +139,7 @@ class SideBar extends React.Component{
               </ul>
               </div>
         </div>
+        </>
         );
     }
 

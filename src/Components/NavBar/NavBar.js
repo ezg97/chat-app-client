@@ -65,8 +65,8 @@ class NavBar extends React.Component{
                     <img className="img profile" src={this.context.user.user_thumbnail} alt="Logo"/>
                 </div> 
                 <div className="dropdown-content" tabindex={2}>
-                    <a href="#" tabindex={0}>Dark Mode</a>
-                    <a href="#" tabindex={0}>Settings</a>
+                    <a href="#" onClick={() => this.onHomeClick()} tabindex={0}>Home</a>
+                    {/* <a href="#" tabindex={0}>Settings</a> */}
                     <a onClick={() => this.logout()}>Logout</a>
                 </div>   
             </div>     

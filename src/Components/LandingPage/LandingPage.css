@@ -7,9 +7,9 @@
 }
 
 :root{
-    --width-size: 300px;
+    --width-size: 200px;
     --button-width-size: 90px;
-    --button-height-size: 50px;
+    --button-height-size: 40px;
 
 }
 
@@ -282,5 +282,18 @@ button:hover, button:focus, a:hover, a:focus{
     to{
         opacity: 1;
         cursor: pointer;
+    }
+}
+
+
+    /* ----------
+        COMPUTER SCREEN REGULAR 
+----------------------*/
+@media screen and (min-width: 768px) {
+    :root{
+        --width-size: 300px;
+        --button-width-size: 90px;
+        --button-height-size: 50px;
+    
     }
 }

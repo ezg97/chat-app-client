@@ -12,7 +12,9 @@ class Dashboard extends Component {
     super(props);
         this.state = {
             handle: '',
-            content: ''
+            content: '',
+            classMobile: '',
+
         };
     }
 
@@ -20,13 +22,25 @@ class Dashboard extends Component {
 
 
 
-  componentDidMount() {
-
-  }
+    updateClass = (updatedClass) => {
+        console.log('updated class',updatedClass)
+        this.setState({
+            classMobile: updatedClass
+        });
+    }
 
   render() {    
       return (
-        <div className='page dashboard'>
+          <>
+        {((this.context.searchResults.length === 0) && (this.context.selectedUser < 1))
+            ?  (this.state.classMobile === 'hide')
+                ? null
+                : this.updateClass('hide') 
+            : (this.state.classMobile === 'hide')
+                ? this.updateClass('') 
+                : null  
+        }
+        <div className={`page dashboard ${this.state.classMobile}`}>
             {/* {console.log('PASSED UNO :')} */}
        
             <div className='box'>
@@ -54,6 +68,7 @@ class Dashboard extends Component {
             </div>
 
         </div>
+        </>
       );
     }
 }

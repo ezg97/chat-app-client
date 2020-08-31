@@ -72,14 +72,26 @@ class Chat extends React.Component{
 
     render() {
 
+        console.log('all links was gud', this.context.selectedUser);
         
-
         return(
         <div className='page chat'>
           
+          <div className='user-header'>
+              {this.context.allLinks.map(obj => 
+                (obj.id === this.context.selectedUser)
+                    ?<ul>
+                        <li><div className='img-border'><img class="img active" src={obj.user_thumbnail} alt="Logo"/></div></li>
+                        <li>{obj.user_name}</li>
+                    </ul>
+                    :null
 
+            )}
+                    
+                </div>
             {/* {console.log('here -:', this.context)} */}
             <div id='chat-window'>
+                
                 {/* <div id='output'> */}
                 <div className="typing" ref={ this.myRef }>
                     {this.context.isTyping

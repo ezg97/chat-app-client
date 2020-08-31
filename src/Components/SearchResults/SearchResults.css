@@ -1,5 +1,5 @@
 .search-results{
-    width: 68%;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -49,7 +49,10 @@
     display: flex;
     justify-content: flex-start;
     float: left;
+
+    width: 55%;
 }
+
 
 
 .img-border{
@@ -118,10 +121,43 @@
 }
 
 .lock{
-    position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 
 }
 
+  /* ----------
+        COMPUTER SCREEN REGULAR 
+----------------------*/
+@media screen and (min-width: 768px) {
+
+    /* SEARCH RESULTS PAGE: Only take up a portion of the screen so that the links sidebar can appear */
+    .search-results{
+        width: 68%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    
+        /* 2.2 is the height of the navbar. I added 1.2 extra to have some space */
+        padding-top: 3.4em;
+        background-color: black;
+
+        /* height: calc(100% - 2.2em); */
+        padding-left: 40px;
+    
+    }
+
+    .result-list li section{
+        display: flex;
+        justify-content: flex-start;
+        float: left;
+    
+        width: 70%;
+    }
+    .result-list li section p{
+        width: 85%;
+    }
+}

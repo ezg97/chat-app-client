@@ -311,7 +311,7 @@ class Home extends Component {
         this.getSelectedUserId, onContentChange: this.onContentChange,
       isTyping: this.state.isTyping, typingHandle: this.state.typingHandle, messages: this.state.messages, rooms: this.state.rooms,
       user_name: this.context.user.user_name, id: this.context.user.id, user_thumbnail: this.context.user.user_thumbnail,
-      typingId: this.state.typingId, selectedUser: this.context.selectedUser}}>
+      typingId: this.state.typingId, selectedUser: this.context.selectedUser, allLinks: this.context.allLinks}}>
         <div className='container'>
 
         <Route exact path={['/','/home','/settings']} component={NavBar} />

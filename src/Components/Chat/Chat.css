@@ -13,7 +13,7 @@
 }
 
 .chat{
-    width: 68%;
+    width: 100%;
     /* height: calc(100% - 2.2em); */
     background-color: black;
 
@@ -23,17 +23,35 @@
 #chat-window{
     margin: 0 auto;
     width: 90%;
-    height: 70%;
+    height: 75%;
     background-color: black;
     overflow: scroll;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 10px;
 
-
     display: flex;
     flex-direction: column-reverse;
 }
+
+
+.user-header {
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+}
+.user-header > ul {
+    list-style-type: none;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 5px;
+}
+.user-header > ul > li {
+    padding: 5px;
+}
+
 
 .messages{
     /* padding: 0.5em;
@@ -176,3 +194,21 @@ textarea {
     background: #2196f3;
     box-shadow: 0 0 10px green, 0 0 40px green, 0 0 80px #8c9ca8;
 }
+
+
+  /* ----------
+        COMPUTER SCREEN REGULAR 
+----------------------*/
+@media screen and (min-width: 768px) {
+
+    /* CHAT PAGE: Only take up a portion of the screen so that the links sidebar can appear */
+    .chat{
+        width: 68%;
+        /* height: calc(100% - 2.2em); */
+        background-color: black;
+    
+    
+    }
+}
+
+

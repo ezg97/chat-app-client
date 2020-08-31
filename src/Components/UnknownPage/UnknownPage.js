@@ -24,13 +24,14 @@ class UnkownPage extends Component {
 
   render() {    
       return (
-        <div className='container'>
+        <div className='container unknown'>
             {/* {console.log('PASSED UNO :')} */}
        
-
-            <main className="App">
-                <h2> <NavLink to="/">Click here to return return home</NavLink></h2>         
-            </main>
+            <div className="unknown-background"></div>
+            <h2> You're lost... </h2>
+                <button><NavLink to="/">Return Home</NavLink></button>  
+           
+                       
 
         </div>
       );

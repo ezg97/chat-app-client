@@ -28,8 +28,11 @@ class UnkownPage extends Component {
             {/* {console.log('PASSED UNO :')} */}
        
             <div className="unknown-background"></div>
-            <h2> You're lost... </h2>
-                <button><NavLink to="/">Return Home</NavLink></button>  
+            <div className="unknown-text">
+              <h2> You're lost... </h2>
+                <button><NavLink to="/">Return Home</NavLink></button>
+            </div>
+              
            
                        
 

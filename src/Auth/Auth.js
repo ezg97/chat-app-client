@@ -1,6 +1,6 @@
 //import AuthService from './AuthService';
 console.log('1 testing imports');
-// const Auth = fetch('http://localhost:8000/auth/',
+// const Auth = fetch('https://protected-taiga-95742.herokuapp.com/auth/',
 //         {   method: "GET", 
 //             headers: {
 //                 'Accept': 'application/json',

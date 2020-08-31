@@ -45,17 +45,17 @@ class App extends Component {
   }
 
   authorize = () => {
-    fetch('http://localhost:8000/auth/',
+    fetch('https://protected-taiga-95742.herokuapp.com/auth/',
     {   method: "GET", 
-        // 'Access-Control-Allow-Origin':'http://localhost:3000',
+        // 'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
         // headers: {
-         //  Origin: 'http://localhost:3000/auth',
+         //  Origin: 'https://www.chat-app.dev/auth',
          'credentials': 'include',
 
           //mode: 'no-cors',
           headers: new Headers({
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin':'http://localhost:3000/',
+            'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
             'Content-Type': 'application/json',
             // 'Access-Control-Request-Method': 'GET, POST, DELETE, PUT, OPTIONS',
             // 'Access-Control-Allow-Credentials': 'true',
@@ -67,7 +67,7 @@ class App extends Component {
         // credentials: 'include',
         // headers: {
           // 'Accept': 'application/json',
-          // 'Access-Control-Allow-Origin':'http://localhost:8000',
+          // 'Access-Control-Allow-Origin':'https://protected-taiga-95742.herokuapp.com',
             // 'Content-Type': 'application/json',
         // },
         
@@ -115,12 +115,12 @@ class App extends Component {
 
   getLinks = () => {
     console.log('here',this.state.user.id)
-    fetch(`http://localhost:8000/user/links/${this.state.user.id}`,
+    fetch(`https://protected-taiga-95742.herokuapp.com/user/links/${this.state.user.id}`,
     {   method: "GET", 
          'credentials': 'include',
           headers: new Headers({
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin':'http://localhost:3000/',
+            'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
             'Content-Type': 'application/json',
          }),
     })
@@ -148,12 +148,12 @@ class App extends Component {
     console.log({id});
     
     if (id.length > 0) {
-      fetch(`http://localhost:8000/user/allLinks`,
+      fetch(`https://protected-taiga-95742.herokuapp.com/user/allLinks`,
       {   method: "POST", 
           'credentials': 'include',
             headers: new Headers({
               'Accept': 'application/json',
-              'Access-Control-Allow-Origin':'http://localhost:3000/',
+              'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
               'Content-Type': 'application/json',
           }),
           body: JSON.stringify( id )
@@ -191,12 +191,12 @@ class App extends Component {
 
   addLink = (id) => {
     console.log('linked clicked!', id);
-    fetch(`http://localhost:8000/user/addLink`,
+    fetch(`https://protected-taiga-95742.herokuapp.com/user/addLink`,
         {   method: "POST", 
             'credentials': 'include',
             headers: new Headers({
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin':'http://localhost:3000/',
+                'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
                 'Content-Type': 'application/json',
             }),
             body: JSON.stringify( 
@@ -217,12 +217,12 @@ class App extends Component {
 
     deleteLink = (id) => {
       console.log('linked clicked!', id);
-      fetch(`http://localhost:8000/user/deleteLink`,
+      fetch(`https://protected-taiga-95742.herokuapp.com/user/deleteLink`,
           {   method: "DELETE", 
               'credentials': 'include',
               headers: new Headers({
                   'Accept': 'application/json',
-                  'Access-Control-Allow-Origin':'http://localhost:3000/',
+                  'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
                   'Content-Type': 'application/json',
               }),
               body: JSON.stringify( 
@@ -362,7 +362,7 @@ export default App;
 //     };
 
 //     //initialize
-//     this.socket = socketIOClient('http://localhost:8000');
+//     this.socket = socketIOClient('https://protected-taiga-95742.herokuapp.com');
 //     this.typing = 0;
 
 //     this.socket.on('id', id => {

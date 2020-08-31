@@ -38,7 +38,7 @@ class Login extends React.Component{
         console.log('LOCAL clicked');
         console.log('state: ', this.state);
 //?username=ezg@yahoo.com&password=alskdjf
-        fetch('http://localhost:8000/local/login?' + new URLSearchParams({
+        fetch('https://protected-taiga-95742.herokuapp.com/local/login?' + new URLSearchParams({
             email: 'elijah@yahoo.com',
             password: 'wakawaka97'
         }),
@@ -46,13 +46,13 @@ class Login extends React.Component{
             'credentials': 'include',
             // headers: {
             //     'Accept': 'application/json',
-            //     'Access-Control-Allow-Origin':'http://localhost:3000',
+            //     'Access-Control-Allow-Origin':'https://www.chat-app.dev',
             //     'Content-Type': 'application/json',
             //     'redirect': 'follow'
             // },
             headers: new Headers({
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin':'http://localhost:3000/',
+                'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
                 'Content-Type': 'application/json',
             }),
             body: JSON.stringify( 
@@ -77,18 +77,18 @@ class Login extends React.Component{
 
         e.preventDefault();
         console.log('google clicked');
-        // let myWindow = window.open("http://localhost:8000/auth/google","google","width=600,height=800");
+        // let myWindow = window.open("https://protected-taiga-95742.herokuapp.com/auth/google","google","width=600,height=800");
 
         // console.log(myWindow);
         // console.log(myWindow.closed);
 
         
 
-        fetch('http://localhost:8000/auth/login/github',
+        fetch('https://protected-taiga-95742.herokuapp.com/auth/login/github',
         {   method: "GET", 
             headers: {
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Access-Control-Allow-Origin':'https://www.chat-app.dev',
                 'Content-Type': 'applications/json',
                 'redirect': 'follow'
             }
@@ -103,7 +103,7 @@ class Login extends React.Component{
         })
         .then(res => {
             // console.log('succsess: ', res);
-            let myWindow = window.location.href="http://localhost:8000/auth/github";
+            let myWindow = window.location.href="https://protected-taiga-95742.herokuapp.com/auth/github";
 
             console.log(myWindow);
             // console.log(myWindow.closed);
@@ -121,11 +121,11 @@ class Login extends React.Component{
         console.log('twitch clicked');
 
         //this don't matter bc it gonna return nothing so we can open a new tab
-        fetch('http://localhost:8000/auth/login/github',
+        fetch('https://protected-taiga-95742.herokuapp.com/auth/login/github',
         {   method: "GET", 
             headers: {
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Access-Control-Allow-Origin':'https://www.chat-app.dev',
                 'Content-Type': 'applications/json',
                 'redirect': 'follow'
             }
@@ -140,7 +140,7 @@ class Login extends React.Component{
         })
         .then(res => {
             // console.log('succsess: ', res);
-            let myWindow = window.location.href="http://localhost:8000/auth/twitch";
+            let myWindow = window.location.href="https://protected-taiga-95742.herokuapp.com/auth/twitch";
 
             console.log(myWindow);
             // console.log(myWindow.closed);
@@ -155,18 +155,18 @@ class Login extends React.Component{
     btnGoogle = (e) => {
         e.preventDefault();
         console.log('google clicked');
-        // let myWindow = window.open("http://localhost:8000/auth/google","google","width=600,height=800");
+        // let myWindow = window.open("https://protected-taiga-95742.herokuapp.com/auth/google","google","width=600,height=800");
 
         // console.log(myWindow);
         // console.log(myWindow.closed);
 
         
 
-        fetch('http://localhost:8000/auth/login/google',
+        fetch('https://protected-taiga-95742.herokuapp.com/auth/login/google',
         {   method: "GET", 
             headers: {
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Access-Control-Allow-Origin':'https://www.chat-app.dev',
                 'Content-Type': 'applications/json',
                 'redirect': 'follow'
             }
@@ -181,7 +181,7 @@ class Login extends React.Component{
         })
         .then(res => {
             // console.log('succsess: ', res);
-            let myWindow = window.location.href="http://localhost:8000/auth/google";
+            let myWindow = window.location.href="https://protected-taiga-95742.herokuapp.com/auth/google";
 
             console.log(myWindow);
             // console.log(myWindow.closed);
@@ -199,11 +199,11 @@ class Login extends React.Component{
         console.log('linkedin clicked');
 
         //this don't matter bc it gonna return nothing so we can open a new tab
-        fetch('http://localhost:8000/auth/login/github',
+        fetch('https://protected-taiga-95742.herokuapp.com/auth/login/github',
         {   method: "GET", 
             headers: {
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Access-Control-Allow-Origin':'https://www.chat-app.dev',
                 'Content-Type': 'applications/json',
                 'redirect': 'follow'
             }
@@ -218,7 +218,7 @@ class Login extends React.Component{
         })
         .then(res => {
             // console.log('succsess: ', res);
-            let myWindow = window.location.href="http://localhost:8000/auth/linkedin";
+            let myWindow = window.location.href="https://protected-taiga-95742.herokuapp.com/auth/linkedin";
 
             console.log(myWindow);
             // console.log(myWindow.closed);

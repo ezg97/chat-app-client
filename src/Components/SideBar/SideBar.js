@@ -22,12 +22,12 @@ class SideBar extends React.Component{
 
     componentDidMount() {
         //get ALL of the user's links
-        // fetch('http://localhost:8000/user/links/1',
+        // fetch('https://protected-taiga-95742.herokuapp.com/user/links/1',
         //         {   method: "GET", 
         //             'credentials': 'include',
         //             headers: new Headers({
         //                 'Accept': 'application/json',
-        //                 'Access-Control-Allow-Origin':'http://localhost:3000/',
+        //                 'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
         //                 'Content-Type': 'application/json',
         //             }),
         //         })

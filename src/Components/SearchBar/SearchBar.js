@@ -39,12 +39,12 @@ class SearchBar extends React.Component{
     getSuggestions = () => {
         if (this.checkText()) {
             //make a get request for the users and pass this.text to the api
-            fetch(`http://localhost:8000/user/search/${this.state.text}`,
+            fetch(`https://protected-taiga-95742.herokuapp.com/user/search/${this.state.text}`,
             {   method: "GET", 
                 'credentials': 'include',
                   headers: new Headers({
                       'Accept': 'application/json',
-                      'Access-Control-Allow-Origin':'http://localhost:3000/',
+                      'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
                       'Content-Type': 'application/json',
                   }),
              })
@@ -66,12 +66,12 @@ class SearchBar extends React.Component{
        console.log(' - - - clicked search');
        
        if (this.checkText()) {
-            fetch(`http://localhost:8000/user/searched/${this.state.text}`,
+            fetch(`https://protected-taiga-95742.herokuapp.com/user/searched/${this.state.text}`,
             {   method: "GET", 
                 'credentials': 'include',
                 headers: new Headers({
                     'Accept': 'application/json',
-                    'Access-Control-Allow-Origin':'http://localhost:3000/',
+                    'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
                     'Content-Type': 'application/json',
                 }),
             })

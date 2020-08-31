@@ -32,7 +32,7 @@ class Home extends Component {
     };
  
     //initialize
-    this.socket = socketIOClient('http://localhost:8000');
+    this.socket = socketIOClient('https://protected-taiga-95742.herokuapp.com');
     this.typing = 0;
 
     //listen for: Server will respond with the "socketID" once the user has been connected

@@ -56,7 +56,8 @@ class NavBar extends React.Component{
         return(
         <nav className = 'app_nav'>
             <ul tabindex={0} onClick={() => this.onHomeClick()}>
-              <li><p>&#128490;</p></li>
+              {/* <li><p>&#128490;</p></li> */}
+              <li><i class="fas fa-comment-alt"></i></li>
               <li><h3>Chat App</h3></li>
             </ul>
             <Route exact path={['/','/home']} component={SearchBar} />

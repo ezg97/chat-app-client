@@ -114,28 +114,30 @@ class Chat extends React.Component{
                         THEN:   Access the the object from the rooms array by index (getSelectedUserId) 
                                 and display the messages that correspond with that room  
                         ELSE:   Nothing, no user has been selected. */}
-                {(this.context.getSelectedUserId() >= 0)
-                    ? this.context.rooms[this.context.getSelectedUserId()].messages.map(msgs =>
-                        (msgs.id == this.context.id)
-                            ?<p className='messages-right'> {/*<span className='meta-right'>{msgs.handle}</span>*/}
+                <div className={'msg-list'}>
+                    {(this.context.getSelectedUserId() >= 0)
+                        ? this.context.rooms[this.context.getSelectedUserId()].messages.map(msgs =>
+                            (msgs.id == this.context.id)
+                                ?<p className='messages-right'> {/*<span className='meta-right'>{msgs.handle}</span>*/}
+                                <span className='text-message'>{msgs.content}</span></p>
+                                :<p className='messages'> {/*<span className='meta'>{msgs.handle}</span>*/}
+                                <span className='text-message'>{msgs.content}</span></p>
+                            
+                            // <>
+                            // {console.log('attn: ', msgs.handle)}
+                            /* <p className='messages'> <span className='meta'>{msgs.handle}</span>
                             <span className='text-message'>{msgs.content}</span></p>
-                            :<p className='messages'> {/*<span className='meta'>{msgs.handle}</span>*/}
-                            <span className='text-message'>{msgs.content}</span></p>
-                         
-                        // <>
-                        // {console.log('attn: ', msgs.handle)}
-                        /* <p className='messages'> <span className='meta'>{msgs.handle}</span>
-                         <span className='text-message'>{msgs.content}</span></p>
-                         </> */
-                        // (msgs.id == this.context.user.id)
-                            // ?<p className='messages'> <span className='meta'>{msgs.handle}</span>
-                            // <span className='text-message'>{msgs.content}</span></p>
-                            // :<p className='messages-right'> <span className='meta-right'>{msgs.handle}</span>
-                            // <span className='text-message'>{msgs.content}</span></p>
-                         
-                    )
-                    : <p className='offline'> User is offline and cannot receive messages right now.</p>
-                }
+                            </> */
+                            // (msgs.id == this.context.user.id)
+                                // ?<p className='messages'> <span className='meta'>{msgs.handle}</span>
+                                // <span className='text-message'>{msgs.content}</span></p>
+                                // :<p className='messages-right'> <span className='meta-right'>{msgs.handle}</span>
+                                // <span className='text-message'>{msgs.content}</span></p>
+                            
+                        )
+                        : <p className='offline'> User is offline and cannot receive messages right now.</p>
+                    }
+                </div>
                 
                 {/* </div> */}
             </div>

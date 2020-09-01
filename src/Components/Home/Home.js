@@ -97,8 +97,10 @@ class Home extends Component {
 
       // If the chat is not open (thus we have not read the message) 
       if (this.context.selectedUser !== msg.user.id) {
-        //add the user's id to the unread array
-        this.context.updateUnread(msg.user.id);
+        //add the user's id to the unread array IF it hasn't already been added
+        if (!this.context.unread.includes(msg.user.id)) {
+          this.context.updateUnread(msg.user.id);
+        }
       }
 
       //ELSE: listen for messages from links I haven't selected yet, or users I've NEVER linked to!!!!

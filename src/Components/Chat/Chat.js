@@ -117,9 +117,9 @@ class Chat extends React.Component{
                 {(this.context.getSelectedUserId() >= 0)
                     ? this.context.rooms[this.context.getSelectedUserId()].messages.map(msgs =>
                         (msgs.id == this.context.id)
-                            ?<p className='messages-right'> <span className='meta-right'>{msgs.handle}</span>
+                            ?<p className='messages-right'> {/*<span className='meta-right'>{msgs.handle}</span>*/}
                             <span className='text-message'>{msgs.content}</span></p>
-                            :<p className='messages'> <span className='meta'>{msgs.handle}</span>
+                            :<p className='messages'> {/*<span className='meta'>{msgs.handle}</span>*/}
                             <span className='text-message'>{msgs.content}</span></p>
                          
                         // <>

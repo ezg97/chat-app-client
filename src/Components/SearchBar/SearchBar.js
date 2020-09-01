@@ -105,6 +105,14 @@ class SearchBar extends React.Component{
         this.getSuggestions();
     }, 500);
 
+    onSuggestionClick = (user) => {
+        this.setState({
+            text: user
+        });
+        this.searchClicked();
+
+    }
+
     // search = debounce(console.log('been deBOUNCED'), 1000);
 
     render() {
@@ -114,9 +122,11 @@ class SearchBar extends React.Component{
 
             <div className="search">
                 <input type='text' placeholder="Username" list="user-suggestions"
-                onChange={(e) => this.updateText(e.target.value)}></input>
+                onChange={(e) => this.updateText(e.target.value)}
+                onKeyDown={(e) => e.keyCode === 13 ? this.searchClicked() :null}></input>
 
-                <datalist id='user-suggestions'>
+                <datalist id='user-suggestions'
+                onClick={(e) => this.onSuggestionClick(e.target.value)}>
                     {this.state.matchedUsers === []? 
                         null 
                         :this.state.matchedUsers.map((suggestedUsers) => 

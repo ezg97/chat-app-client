@@ -25,7 +25,7 @@ class UnkownPage extends Component {
   render() {    
       return (
         <div className='container unknown'>
-            {/* {console.log('PASSED UNO :')} */}
+            {/* {//console.log('PASSED UNO :')} */}
        
             <div className="unknown-background"></div>
             <div className="unknown-text">

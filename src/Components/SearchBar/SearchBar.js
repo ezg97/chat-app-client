@@ -28,7 +28,6 @@ class SearchBar extends React.Component{
     checkText = () => { 
                 //if zero it will
         if (this.state.text.length) {
-            // console.log('has length');
             if (this.state.text.trim().length) {
                 return true;
             }
@@ -50,7 +49,7 @@ class SearchBar extends React.Component{
              })
             .then(matchedUsers => {
                 if (!matchedUsers.ok) {
-                    // console.log('error:', matchedUsers);
+                    //console.log('error:', matchedUsers);
                 }
                 return matchedUsers.json(); //the response is NOT Json
             })
@@ -63,7 +62,7 @@ class SearchBar extends React.Component{
    }
 
    searchClicked = () => {
-       console.log(' - - - clicked search');
+       //console.log(' - - - clicked search');
        
        if (this.checkText()) {
             fetch(`https://protected-taiga-95742.herokuapp.com/user/searched/${this.state.text}`,
@@ -76,16 +75,12 @@ class SearchBar extends React.Component{
                 }),
             })
             .then(searchedUsers => {
-                console.log('- & matches have been returned');
                 if (!searchedUsers.ok) {
-                    console.log('error:', searchedUsers);
                 }
                 return searchedUsers.json(); //the response is NOT Json
             })
             .then (results => {
-                console.log({results});
-                console.log(results)
-                console.log(results.length === 0);
+              
                 if(results.length === 0){
                     this.context.updateSearchResults(['No results found']);
                 }
@@ -93,9 +88,6 @@ class SearchBar extends React.Component{
                     this.context.updateSearchResults(results);
                     this.context.updateSearched(this.state.text);
                 }
-                        // if (Object.keys(matchedUsers).length > 0) {
-                        //     this.context.updateLinks({matchedUsers});
-                        // }
             });
         }
    }
@@ -113,10 +105,8 @@ class SearchBar extends React.Component{
 
     }
 
-    // search = debounce(console.log('been deBOUNCED'), 1000);
 
     render() {
-        // console.log('updated: ',this.state.text)
         return(
         <div className='searchbar'>
 

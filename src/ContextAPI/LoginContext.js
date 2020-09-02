@@ -1,6 +1,6 @@
 import {createContext} from 'react';
 
-// console.log('HERE INSIDE OF CONTEXT API');
+// //console.log('HERE INSIDE OF CONTEXT API');
 
 export const Auth = createContext({
     username: '',

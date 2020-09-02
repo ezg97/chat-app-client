@@ -39,13 +39,13 @@ class Authorization extends Component {
   
 
   render() {
-    console.log('AUTHORIZATION JS');
+    //console.log('AUTHORIZATION JS');
   
     //checks to see if the user has been validated. Aka, have we ran "authorized()" to even know if he's logged in or out
     if (this.context.userHasBeenChecked) {
-     // console.log('has been checked');
+     // //console.log('has been checked');
       if (this.context.loggedIn) {
-     //   console.log('logged in');
+     //   //console.log('logged in');
         return (
           <div className='container'>
 
@@ -60,7 +60,7 @@ class Authorization extends Component {
         );
       }
       else {
-      //  console.log('NOT loggged in');
+      //  //console.log('NOT loggged in');
         return (
           <div className='container'>
 
@@ -79,7 +79,7 @@ class Authorization extends Component {
     }
     //if the user has not been verified to be logged in or off, then show loading screen.
     else{
-      //console.log('Hasn\'t been checked yet');
+      ////console.log('Hasn\'t been checked yet');
       return(
         //add loading screen maybe? or a electronic pulse across the screen (from right to left)
         <div className='container'>
@@ -90,15 +90,15 @@ class Authorization extends Component {
 
     // return (
     //     <div className='container'>
-    //         {console.log('UNO :')}
-    //         {console.log(this.context.loggedIn)}
+    //         {//console.log('UNO :')}
+    //         {//console.log(this.context.loggedIn)}
     //         {/* {this.context.isAuthValid = true} */}
-    //         {/* {console.log('OTRA VEZ:')}
-    //         {console.log(this.context.loggedIn)} */}
-    //         {/* {console.log('calling context function below:')}
-    //         {console.log(this.context.authorize())} */}
-    //         {console.log('LA ULTIMA:')}
-    //         {console.log(this.context.loggedIn)}
+    //         {/* {//console.log('OTRA VEZ:')}
+    //         {//console.log(this.context.loggedIn)} */}
+    //         {/* {//console.log('calling context function below:')}
+    //         {//console.log(this.context.authorize())} */}
+    //         {//console.log('LA ULTIMA:')}
+    //         {//console.log(this.context.loggedIn)}
 
     //       <main className="App">
     //         <Switch>

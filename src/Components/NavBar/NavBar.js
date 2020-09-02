@@ -22,7 +22,7 @@ class NavBar extends React.Component{
     static contextType = LoginContext;
 
     logout = () => {
-    console.log('logging out')
+    //console.log('logging out')
     fetch(`https://protected-taiga-95742.herokuapp.com/auth/logout`,
     {   method: "GET", 
          'credentials': 'include',
@@ -34,7 +34,7 @@ class NavBar extends React.Component{
     })
     .then(res => {
         if (!res.ok) {
-            console.log('error:', res);
+            //console.log('error:', res);
         }
         return res.json(); //the response is NOT Json
     })

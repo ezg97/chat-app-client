@@ -35,8 +35,8 @@ class Login extends React.Component{
 
     btnLocal = (e) => {
        /* e.preventDefault();
-        console.log('LOCAL clicked');
-        console.log('state: ', this.state);
+        //console.log('LOCAL clicked');
+        //console.log('state: ', this.state);
 //?username=ezg@yahoo.com&password=alskdjf
         fetch('https://protected-taiga-95742.herokuapp.com/local/login?' + new URLSearchParams({
             email: 'elijah@yahoo.com',
@@ -60,27 +60,27 @@ class Login extends React.Component{
             )
         })
         .then(res => {
-             console.log('local auth returned');
+             //console.log('local auth returned');
             if(!res.ok){
-                console.log('error:', res);
+                //console.log('error:', res);
             }
-            // console.log('made it');
+            // //console.log('made it');
             return res.json(); //the response is NOT Json
         })
         .then(res => {
-            console.log('local 2');
-            console.log('succsess: ', res);
+            //console.log('local 2');
+            //console.log('succsess: ', res);
         })
         .catch(err => {
-            console.log('ERROR: ', err);
+            //console.log('ERROR: ', err);
         })*/
 
         e.preventDefault();
-        console.log('google clicked');
+        //console.log('google clicked');
         // let myWindow = window.open("https://protected-taiga-95742.herokuapp.com/auth/google","google","width=600,height=800");
 
-        // console.log(myWindow);
-        // console.log(myWindow.closed);
+        // //console.log(myWindow);
+        // //console.log(myWindow.closed);
 
         
 
@@ -94,31 +94,31 @@ class Login extends React.Component{
             }
         })
         .then(res => {
-            // console.log('google 2');
+            // //console.log('google 2');
             if(!res.ok){
-                console.log('error:', res);
+                //console.log('error:', res);
             }
-            // console.log('made it');
+            // //console.log('made it');
             return res.json(); //the response is NOT Json
         })
         .then(res => {
-            // console.log('succsess: ', res);
+            // //console.log('succsess: ', res);
             let myWindow = window.location.href="https://protected-taiga-95742.herokuapp.com/auth/github";
 
-            console.log(myWindow);
-            // console.log(myWindow.closed);
+            //console.log(myWindow);
+            // //console.log(myWindow.closed);
             
 
         })
         .catch(err => {
-            console.log('ERROR: ', err);
+            //console.log('ERROR: ', err);
         })
      }
 
      //TWITCH
      btnTwitch = (e) => {
         e.preventDefault();
-        console.log('twitch clicked');
+        //console.log('twitch clicked');
 
         //this don't matter bc it gonna return nothing so we can open a new tab
         fetch('https://protected-taiga-95742.herokuapp.com/auth/login/github',
@@ -131,34 +131,34 @@ class Login extends React.Component{
             }
         })
         .then(res => {
-            // console.log('google 2');
+            // //console.log('google 2');
             if(!res.ok){
-                console.log('error:', res);
+                //console.log('error:', res);
             }
-            // console.log('made it');
+            // //console.log('made it');
             return res.json(); //the response is NOT Json
         })
         .then(res => {
-            // console.log('succsess: ', res);
+            // //console.log('succsess: ', res);
             let myWindow = window.location.href="https://protected-taiga-95742.herokuapp.com/auth/twitch";
 
-            console.log(myWindow);
-            // console.log(myWindow.closed);
+            //console.log(myWindow);
+            // //console.log(myWindow.closed);
             
 
         })
         .catch(err => {
-            console.log('ERROR: ', err);
+            //console.log('ERROR: ', err);
         })
      }
 
     btnGoogle = (e) => {
         e.preventDefault();
-        console.log('google clicked');
+        //console.log('google clicked');
         // let myWindow = window.open("https://protected-taiga-95742.herokuapp.com/auth/google","google","width=600,height=800");
 
-        // console.log(myWindow);
-        // console.log(myWindow.closed);
+        // //console.log(myWindow);
+        // //console.log(myWindow.closed);
 
         
 
@@ -172,31 +172,31 @@ class Login extends React.Component{
             }
         })
         .then(res => {
-            // console.log('google 2');
+            // //console.log('google 2');
             if(!res.ok){
-                console.log('error:', res);
+                //console.log('error:', res);
             }
-            // console.log('made it');
+            // //console.log('made it');
             return res.json(); //the response is NOT Json
         })
         .then(res => {
-            // console.log('succsess: ', res);
+            // //console.log('succsess: ', res);
             let myWindow = window.location.href="https://protected-taiga-95742.herokuapp.com/auth/google";
 
-            console.log(myWindow);
-            // console.log(myWindow.closed);
+            //console.log(myWindow);
+            // //console.log(myWindow.closed);
             
 
         })
         .catch(err => {
-            console.log('ERROR: ', err);
+            //console.log('ERROR: ', err);
         })
      }
 
 
      btnLinkedIn = (e) => {
         e.preventDefault();
-        console.log('linkedin clicked');
+        //console.log('linkedin clicked');
 
         //this don't matter bc it gonna return nothing so we can open a new tab
         fetch('https://protected-taiga-95742.herokuapp.com/auth/login/github',
@@ -209,24 +209,24 @@ class Login extends React.Component{
             }
         })
         .then(res => {
-            // console.log('google 2');
+            // //console.log('google 2');
             if(!res.ok){
-                console.log('error:', res);
+                //console.log('error:', res);
             }
-            // console.log('made it');
+            // //console.log('made it');
             return res.json(); //the response is NOT Json
         })
         .then(res => {
-            // console.log('succsess: ', res);
+            // //console.log('succsess: ', res);
             let myWindow = window.location.href="https://protected-taiga-95742.herokuapp.com/auth/linkedin";
 
-            console.log(myWindow);
-            // console.log(myWindow.closed);
+            //console.log(myWindow);
+            // //console.log(myWindow.closed);
             
 
         })
         .catch(err => {
-            console.log('ERROR: ', err);
+            //console.log('ERROR: ', err);
         })
      }
     render() {
@@ -236,7 +236,7 @@ class Login extends React.Component{
         return(
         <div className='page'>
             <h3>Log In</h3>
-            {/* {console.log('cookie%c:'+document.cookie,'color: blue; font-size: 16px')} */}
+            {/* {//console.log('cookie%c:'+document.cookie,'color: blue; font-size: 16px')} */}
 
             <form className="user-info-form" onSubmit={e => this.handleSubmit(e)}>
 
@@ -286,7 +286,7 @@ class Login extends React.Component{
 
             </form>
             
-            {/* {console.log('here -:', this.context)}
+            {/* {//console.log('here -:', this.context)}
             
                 
                 {/* </div> */}

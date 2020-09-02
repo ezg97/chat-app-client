@@ -22,22 +22,8 @@ class Chat extends React.Component{
     static contextType = Store;
 
     
-
-
-    // onChange = (handle, content, className) => {
     onChange = (content) => {
-
-        // if (handle) {
-        //     this.setState({
-        //         handle
-        //     });
-        // }
-        // if (content) {
-        //     this.setState({
-        //         content
-        //     });
-        // }
-        
+      
         this.context.onContentChange(content);
         
 
@@ -49,30 +35,9 @@ class Chat extends React.Component{
         this.context.typingMessage(this.context.user_name);
     }, 3000);
 
-    // isTyping = () => {
-    //     this.context.typingMessage(this.context.user_name);
-    // }
-
-    //this function will add and remove the hide class to a reference... 3 second intervals between class being most recently added and removed
-    // isTyping = (className) => {
-    //     //clear the timer that way it doesn't get stacked
-    //     clearTimeout(this.typing);
-    //     //if the hide class is already included, then remove
-    //     if (this.myRef.current.classList.value.includes('hide')) {
-    //         this.myRef.current.classList.toggle('hide');
-    //     }
-    //     //set timer for 3 seconds after most recent keypress and then add the hide class
-    //     this.typing = setTimeout(() => {
-    //         this.myRef.current.classList.toggle('hide')
-
-    //     }, 3000);
-    // }
-
-
 
     render() {
 
-        console.log('all links was gud', this.context.selectedUser);
         
         return(
         <div className='page chat'>
@@ -89,10 +54,8 @@ class Chat extends React.Component{
             )}
                     
                 </div>
-            {/* {console.log('here -:', this.context)} */}
             <div id='chat-window'>
                 
-                {/* <div id='output'> */}
                 <div className="typing" ref={ this.myRef }>
                     {this.context.isTyping
                         ? this.context.typingId === this.context.selectedUser
@@ -102,14 +65,8 @@ class Chat extends React.Component{
                     }
                     
                 </div>
-                {/* using messages var from context 
-                {
-                this.context.messages.map(msgs => 
-                    <p className='messages'> {msgs.handle} - {msgs.content}</p>
-                )} */}
-                {console.log('loopa', this.context.getSelectedUserId())}
-                {(this.context.getSelectedUserId() >= 0) ?console.log('msgs: ',this.context.rooms[this.context.getSelectedUserId()].messages):null}
-                {console.log('rooms', this.context.rooms)}
+
+               
                 {/*IF: The index of the user's object (form getSelectedUserId)  is NOT "-1", 
                         THEN:   Access the the object from the rooms array by index (getSelectedUserId) 
                                 and display the messages that correspond with that room  
@@ -124,7 +81,7 @@ class Chat extends React.Component{
                                 <span className='text-message'>{msgs.content}</span></p>
                             
                             // <>
-                            // {console.log('attn: ', msgs.handle)}
+                            // {//console.log('attn: ', msgs.handle)}
                             /* <p className='messages'> <span className='meta'>{msgs.handle}</span>
                             <span className='text-message'>{msgs.content}</span></p>
                             </> */
@@ -141,8 +98,6 @@ class Chat extends React.Component{
                 
                 {/* </div> */}
             </div>
-            {/* <input id='handle' onChange={(event) => this.onChange(event.target.value, null, event)} type='text' placeholder='Handle'> */}
-            {/* </input> */}
             {(this.context.getSelectedUserId() >= 0)
             ?   <div className='text-area'>
                     <textarea rows="3" id='message' 

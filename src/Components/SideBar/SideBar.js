@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import LoginContext from '../../ContextAPI/LoginContext';
-// import SearchBar from '../SearchBar/SearchBar';
 
 
 import './SideBar.css';
@@ -20,38 +19,7 @@ class SideBar extends React.Component{
 
     static contextType = LoginContext;
 
-    componentDidMount() {
-        //get ALL of the user's links
-        // fetch('https://protected-taiga-95742.herokuapp.com/user/links/1',
-        //         {   method: "GET", 
-        //             'credentials': 'include',
-        //             headers: new Headers({
-        //                 'Accept': 'application/json',
-        //                 'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
-        //                 'Content-Type': 'application/json',
-        //             }),
-        //         })
-        //         .then(userLinks => {
-        //             console.log('- Links have been returned');
-        //             console.log({userLinks});
-        //             if (!userLinks.ok) {
-        //                 console.log('error:', userLinks);
-        //             }
-        //             return userLinks.json(); //the response is NOT Json
-        //         })
-        //         .then (userLinks => {
-        //             console.log({userLinks});
-        //             if (Object.keys(userLinks).length > 0) {
-        //                 this.context.updateLinks({userLinks});
-        //             }
-        //         });
-        // console.log('SIDEBARJS');
-        // this.context.getAllLinks();
-        
-    }
-
     updateClass = (updatedClass) => {
-        console.log('updated class',updatedClass)
         this.setState({
             classMobile: updatedClass
         });
@@ -78,8 +46,6 @@ class SideBar extends React.Component{
         }
 
         <div className={`page sidebar ${this.state.classMobile}`}>
-        {console.log('mobile state: ',this.state.classMobile)}
-            {/* <Route exact path={['/','/home']} component={SearchBar} /> */}
             <div>
             <ul className='link-list'>
                 <li className="sidebar_title">
@@ -106,15 +72,9 @@ class SideBar extends React.Component{
                                     }
                                 </div>
                                 <p className="user_name" tabindex={0}>{user.user_name}</p>
-                                {/* <div className="testing"> */}
                                     
-                                {/* </div> */}
                             </section>
-                            {/* <div className='lock-wrap del' onClick={() => this.context.deleteLink(user.id)}>
-                                <div className='lock'>
-                                    <p>&#128274;</p>
-                                </div>
-                            </div>     */}
+                            
                             {this.context.links.includes(user.id)
                                 // LOCKed - DELETE
                                 ?<div className='lock-wrap del' onClick={() => this.context.deleteLink(user.id)}>

@@ -23,7 +23,7 @@ class Dashboard extends Component {
 
 
     updateClass = (updatedClass) => {
-        console.log('updated class',updatedClass)
+        //console.log('updated class',updatedClass)
         this.setState({
             classMobile: updatedClass
         });
@@ -41,7 +41,7 @@ class Dashboard extends Component {
                 : null  
         }
         <div className={`page dashboard ${this.state.classMobile}`}>
-            {/* {console.log('PASSED UNO :')} */}
+            {/* {//console.log('PASSED UNO :')} */}
        
             <div className='box'>
                

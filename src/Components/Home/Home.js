@@ -26,9 +26,6 @@ class Home extends Component {
       socketId: 0,
       typingId: 0,
       rooms: [],
-      // general: [{from: 'Elijah', msg: "Hey guys"}, {from: 'Jack', msg: "Hey"}, {from: 'Al', msg: "Hi"}],
-      // sports: [{from: 'Elijah', msg: "football is cool"}, {from: 'Jack', msg: "yes"}, {from: 'Al', msg: "no"}],
-      // code: [{from: 'Elijah', msg: "OOP?"}, {from: 'Jack', msg: "ew"}, {from: 'Al', msg: "nah"}],
     };
  
     //initialize
@@ -37,37 +34,22 @@ class Home extends Component {
 
     //listen for: Server will respond with the "socketID" once the user has been connected
     this.socket.on('id', id => {
-      console.log('id is in: ',id);
       this.setState({socketId: id});
-      console.log('ztopia', {id: this.context.user.id, user_name: this.context.user.user_name, user_thumbnail: this.context.user.user_thumbnail });
       this.socket.emit('addUser', {id: this.context.user.id, user_name: this.context.user.user_name, user_thumbnail: this.context.user.user_thumbnail });
     });
 
     this.socket.on('topActiveUsers', topActiveUsers => {
-      console.log('zpoptropica', topActiveUsers);
       this.context.updateTopActiveUsers(topActiveUsers);
     })
 
     //listen for: Incoming Messages
     this.socket.on('message', (msg) => {
-      console.log('recieved: ', msg);
-      console.log('cypt message: ',msg);
       //get the index of the user who sent in the request by passing their id as a parameter
       let index = this.getSelectedUserId(msg.user.id);
-      // this.state.rooms.find((obj,i) => {
-      //   console.log(obj.name,' AND ',`${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`)
-      //   if (obj.name === `${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`) {
-      //     console.log(true);
-      //     index = i;
-      //     return true;
-      //   }
-      // });
-
+      
       // IF: The sender and reciever have a room (they should!)
           // THEN: Update the messages that correspond with the room
-      console.log('index cypt', index);
       if(index >= 0){
-        console.log('passed');
         //updating temp updates the state for some reason so I'll leave it like this, or else i'll just setState({rooms: temp})
         const temp = [...this.state.rooms];
         temp[index].messages = [msg.message, ...temp[index].messages];
@@ -83,9 +65,7 @@ class Home extends Component {
         });
 
         if (!exists) {
-          console.log('adding another link');
-          console.log(index);
-          console.log()
+
           this.context.addNonLink(msg.user.id, msg.message.handle, msg.user.thumbnail);
         }
       }
@@ -97,7 +77,7 @@ class Home extends Component {
 
       // If the chat is not open (thus we have not read the message) 
       if (this.context.selectedUser !== msg.user.id) {
-        //add the user's id to the unread array IF it hasn't already been added
+        //add the user's id to the unread array IF
         if (!this.context.unread.includes(msg.user.id)) {
           this.context.updateUnread(msg.user.id);
         }
@@ -111,9 +91,7 @@ class Home extends Component {
 
     //listen for: Another user typing
     this.socket.on('typing', obj => {
-      console.log('problem?');
 
-      console.log('3 - RECEIVED FROM SERVER THAT THIS USER IS NOW TYPING: ' + obj.typing);
       this.setState({
         typingId: obj.id,
         typingHandle: obj.handle,
@@ -124,10 +102,6 @@ class Home extends Component {
 
     // LISTEN: for connection being made - updates state/re-renders
     this.socket.on('connectionMade', (room, toSocket) => {
-
-      console.log('on CONNECTION');
-
-      console.log(room);
 
       //IF this.state.rooms has a length greater than zero . maybe not
       // CHECK: if the room we just connected to has already been connected to in a different tab (aka already)
@@ -151,49 +125,34 @@ class Home extends Component {
       });
      //  if this room hasn't been added to state yet, then add.
      if (!obj) {
-       console.log('Never connected to: ', room, 'creating connection');
         this.setState({
           rooms: [...this.state.rooms, {name: room, messages: [], sockets: [toSocket], content: ''}]
         });
      }
 
-     console.log('CONNECTION HAS BEEN MADE');
 
    });
 
 
    this.socket.on('activeUsers', (users) => {
-     console.log('updating active user roster');
-     console.log(users);
+     
      this.context.updateActiveUsers(users);
    });
 
    this.socket.on('user disconnected', (users) => {
-    console.log('updating active user roster DELETION');
-    console.log(users);
+ 
     this.context.updateActiveUsers(users);
    } )
 
   }
 
-  componentDidMount() {
-    console.log('HOMEJS');
-    this.context.getLinks();
-    
-    // socket.on("FromAPI", data => {
-    //   setResponse(data);
-    // })
-    // console.log('JOINING ROOM//')
-  }
 
   joinRoom = () => {
     const targetId = this.context.selectedUser;
-    console.log(targetId);
     this.socket.emit('JoinRoom', {'room': `${Number(this.context.user.id) + Number(targetId)}to${Math.min(Number(this.context.user.id), Number(targetId))}`, 'targetId': targetId, 'myId':this.context.user.id})
   }
 
   typingMessage = (handle) => {
-    console.log(`1 - sending handle because user:${handle} is typing.`);
     this.socket.emit('typing', {handle, id:this.context.user.id, isTyping: true, room: `${Number(this.context.user.id) + Number(this.context.selectedUser)}to${ Math.min(Number(this.context.user.id), Number(this.context.selectedUser)) }`});
   }
 
@@ -209,7 +168,6 @@ class Home extends Component {
 
   sendMessage = (e, handle, content, id, thumbnail) => {
     e.preventDefault();
-    console.log('in send message');
       let msg = {
         handle,
         content,
@@ -259,29 +217,22 @@ class Home extends Component {
   // IF no parameter is passed THEN -> RETURNS: the selected user's index in the "rooms" array. If no user selected, returns -1.
   // IF paramater is passed THEN -> RETURNS: the the index, of user who sent a message, in the "rooms" array. If the room hasn't been created for this user yet, returns -1.
   getSelectedUserId = (targetUserId = this.context.selectedUser) => {
-    console.log('before selection made');
-    console.log('user who sent the message to me: ', targetUserId)
+  
     let index = -1;
     //If rooms is an empty array, no error will be thrown because the find method won't execute.
     this.state.rooms.find((obj,i) => {
-      console.log(obj.sockets,' AND ',`${Number(this.context.user.id) + Number(targetUserId)}to${ Math.min(Number(this.context.user.id), Number(targetUserId)) }`)
       if (obj.name === `${Number(this.context.user.id) + Number(targetUserId)}to${ Math.min(Number(this.context.user.id), Number(targetUserId)) }`) {
-        console.log(true);
         index = i;
         return index;
       }
     });
-    console.log('selected user', this.context.selectedUser);
-    console.log('but the one who sent me the message doe: ', targetUserId);
-    console.log('index in rooms', index);
+   
     return index;
   }
 
   onContentChange = (content) => {
     let index = this.getSelectedUserId();
-    console.log('content is changing');
-    console.log('content: ', content);
-    console.log('index: ',index);
+   
 
       // IF: a user has been selected (should always be the case, but just to be safe)
           // THEN: Update the content that corresponds with the room
@@ -298,12 +249,8 @@ class Home extends Component {
 
   render() {
 
-    // this.socket.on('message', (msg) => {
-    //   console.log('recieved: ', msg);
-    //   this.setState({ 'messages': [...this.state.messages, msg] })
-    // });
+    
     if (this.context.selectedUser > 0) {
-      console.log('yeeeehawww join');
       this.joinRoom();
     }
     
@@ -319,7 +266,7 @@ class Home extends Component {
         <Route exact path={['/','/home','/settings']} component={NavBar} />
 
           <main className="App">
-            {/* content goes here */ console.log('home state: ',this.state)}
+          
             <Route exact path={['/','/home','/settings']} component={SideBar} />
 
             {/* if there are no search results then load the chat, if there are then load the results */}

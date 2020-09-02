@@ -32,66 +32,38 @@ class App extends Component {
       loggedIn: false,
       unread: [],//store the rooms that have unread messages
       userHasBeenChecked: false, //this will be used to see if "authorize()" has been executed yet
-      // general: [{from: 'Elijah', msg: "Hey guys"}, {from: 'Jack', msg: "Hey"}, {from: 'Al', msg: "Hi"}],
-      // sports: [{from: 'Elijah', msg: "football is cool"}, {from: 'Jack', msg: "yes"}, {from: 'Al', msg: "no"}],
-      // code: [{from: 'Elijah', msg: "OOP?"}, {from: 'Jack', msg: "ew"}, {from: 'Al', msg: "nah"}],
     };
 
-    //initialize
-    //Auth.res();
-    // console.log('calling context function below:');
-    // Auth.authorize();
-
   }
-
   authorize = () => {
     fetch('https://protected-taiga-95742.herokuapp.com/auth/',
     {   method: "GET", 
-        // 'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
-        // headers: {
-         //  Origin: 'https://www.chat-app.dev/auth',
+    
          'credentials': 'include',
-
-          //mode: 'no-cors',
           headers: new Headers({
             'Accept': 'application/json',
             'Access-Control-Allow-Origin':'https://www.chat-app.dev/',
             'Content-Type': 'application/json',
-            // 'Access-Control-Request-Method': 'GET, POST, DELETE, PUT, OPTIONS',
-            // 'Access-Control-Allow-Credentials': 'true',
-            // 'withCredentials': 'true',
 
          }),
-        // },
-        // crossorigin: true,
-        // credentials: 'include',
-        // headers: {
-          // 'Accept': 'application/json',
-          // 'Access-Control-Allow-Origin':'https://protected-taiga-95742.herokuapp.com',
-            // 'Content-Type': 'application/json',
-        // },
-        
-
+  
     })
     .then(validAuth => {
         if (!validAuth.ok) {
-            console.log('error:', validAuth);
+            //console.log('error:', validAuth);
         }
         return validAuth.json(); //the response is NOT Json
     })
     .then (validAuth => {
-        console.log('IS it valid? '+validAuth.user_email);
         if (Object.keys(validAuth).length > 0) {
             this.setState({ 
               loggedIn: true,
               user: validAuth,
               userHasBeenChecked: true,
              });
-            // Auth.isAuthValid = true;
             return true;
         }
         else {
-            // Auth.isAuthValid = false;
             this.setState({
               loggedIn: false,
               user: {},
@@ -103,18 +75,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('app mounted');
     this.authorize();
-    //need to figure out how to let me get authorized so I can get the user value (id mainly) and then 
-    // get the links, and then get the users for the links....
-    //this.getLinks(); //authorize is asynch and takes longer so i need to run this somewhere else
-    // socket.on("FromAPI", data => {
-    //   setResponse(data);
-    // })
+    
   }
 
   getLinks = () => {
-    console.log('here',this.state.user.id)
     fetch(`https://protected-taiga-95742.herokuapp.com/user/links/${this.state.user.id}`,
     {   method: "GET", 
          'credentials': 'include',
@@ -126,13 +91,11 @@ class App extends Component {
     })
     .then(links => {
         if (!links.ok) {
-            console.log('error:', links);
+            //console.log('error:', links);
         }
         return links.json(); //the response is NOT Json
     })
     .then (links => {
-        console.log({links});
-        // if (Object.keys(links).length > 0) {
           //had to remove above line, because if the user deletes all of their links then they will have zero
           this.setState({ 
             links: links
@@ -143,9 +106,7 @@ class App extends Component {
 
   //this IS A GET but bc I need to send the body, it's marked as a POST
   getAllLinks = () => {
-    console.log('getting all links');
     const id = this.state.links;
-    console.log({id});
     
     if (id.length > 0) {
       fetch(`https://protected-taiga-95742.herokuapp.com/user/allLinks`,
@@ -160,16 +121,12 @@ class App extends Component {
       })
       .then(linkData => {
           if (!linkData.ok) {
-              console.log('error:', linkData);
+              //console.log('error:', linkData);
           }
           return linkData.json(); //the response is NOT Json
       })
       .then (linkData => {
-          console.log('returned from chain');
-          console.log({linkData});
-          // if (Object.keys(linkData).length > 0) {
-                    //had to remove above line, because if the user deletes all of their links then they will have zero
-            this.setState({ 
+         this.setState({ 
               allLinks: linkData
             });
       });
@@ -190,7 +147,6 @@ class App extends Component {
   }
 
   addLink = (id) => {
-    console.log('linked clicked!', id);
     fetch(`https://protected-taiga-95742.herokuapp.com/user/addLink`,
         {   method: "POST", 
             'credentials': 'include',
@@ -204,9 +160,8 @@ class App extends Component {
             )
         })
         .then(searchedUsers => {
-            console.log('returned from link service');
             if (!searchedUsers.ok) {
-                console.log('error:', searchedUsers);
+                //console.log('error:', searchedUsers);
             }
             return searchedUsers.json(); //the response is NOT Json
         })
@@ -216,7 +171,6 @@ class App extends Component {
     }
 
     deleteLink = (id) => {
-      console.log('linked clicked!', id);
       fetch(`https://protected-taiga-95742.herokuapp.com/user/deleteLink`,
           {   method: "DELETE", 
               'credentials': 'include',
@@ -230,9 +184,8 @@ class App extends Component {
               )
           })
           .then(searchedUsers => {
-              console.log('returned from link service');
               if (!searchedUsers.ok) {
-                  console.log('error:', searchedUsers);
+                  //console.log('error:', searchedUsers);
               }
               return searchedUsers.json(); //the response is NOT Json
           })
@@ -243,20 +196,16 @@ class App extends Component {
     
   
   selectUser = (id) => {
-    console.log('clicked why?',id);
     this.setState({
       selectedUser: id
     });
     //clear search results or else the chat page won't be rendered... note: for some reason I can't pass an empty array to the method
     //so I passed an empty string because: ''.length is equal to zero so it operates like an empty array []
     this.updateSearchResults('');
-    console.log('1st unread',this.state.unread);
 
     //clear the unread messages
     if (this.state.unread.includes(id)) {
       this.state.unread.splice(this.state.unread.indexOf(id), 1);
-      console.log('2nd unread',this.state.unread);
-
     }
   }
 
@@ -298,11 +247,6 @@ class App extends Component {
 
   render() {
 
-    // this.socket.on('message', (msg) => {
-    //   console.log('recieved: ', msg);
-    //   this.setState({ 'messages': [...this.state.messages, msg] })
-    // });
-    console.log('APP.js',this.state);
 
     return (
       <Auth.Provider value = {{username: this.state.username, password: this.state.password, token: this.state.token, id: this.state.id,
@@ -317,15 +261,7 @@ class App extends Component {
        updateUnread: this.updateUnread, updateSearched: this.updateSearched}}>
         <div className='container'>
           <main className="App">
-            { console.log('app state: ', this.state)}
             <Route component={Authorization} /> 
-            {/* <Switch>
-              <Route exact path='/' component={LandingPage} />
-              <Route exact path='/login' component={Login} />
-
-              <Route exact path='/chat'  component={Chat} />
-              <Route exact path='/home' component={Home} />
-            </Switch> */}
           </main>
 
         </div>
@@ -338,118 +274,3 @@ class App extends Component {
 
 export default App;
 
-
-// need to merge the chat application below with the full paged application above
-
-// import React, {Component} from 'react';
-// import {Route, Switch} from 'react-router-dom';
-// import socketIOClient from 'socket.io-client';
-// import Store from './ContextAPI/Store';
-// import Chat from './Components/Chat/Chat'
-// import './App.css';
-
-// class App extends Component {
-//   constructor(props){
-//     super(props);
-//     this.state = {
-//       messages: [],
-//       typingHandle: '',
-//       isTyping: false,
-//       socketId: 0,
-//       // general: [{from: 'Elijah', msg: "Hey guys"}, {from: 'Jack', msg: "Hey"}, {from: 'Al', msg: "Hi"}],
-//       // sports: [{from: 'Elijah', msg: "football is cool"}, {from: 'Jack', msg: "yes"}, {from: 'Al', msg: "no"}],
-//       // code: [{from: 'Elijah', msg: "OOP?"}, {from: 'Jack', msg: "ew"}, {from: 'Al', msg: "nah"}],
-//     };
-
-//     //initialize
-//     this.socket = socketIOClient('https://protected-taiga-95742.herokuapp.com');
-//     this.typing = 0;
-
-//     this.socket.on('id', id => {
-//       console.log('id is in: ',id);
-//       this.setState({socketId: id});
-//     })
-//     //listen for: Incoming Messages
-//     this.socket.on('message', (msg) => {
-//       console.log('recieved: ', msg);
-//       this.setState({ 'messages': [msg, ...this.state.messages] })
-//     });
-
-//     //listen for: Another user typing
-//     this.socket.on('typing', obj => {
-//       console.log('3 - RECEIVED FROM SERVER THAT THIS USER IS NOW TYPING: ' + obj.typing);
-//       this.setState({
-//         typingHandle: obj.handle,
-//         isTyping: obj.typing
-//       });
-//       this.handleIsTyping();
-//     });
-
-//   }
-
-//   static contextType = Store;
-
-
-
-//   componentDidMount() {
-    
-//     // socket.on("FromAPI", data => {
-//     //   setResponse(data);
-//     // })
-    
-
-//   }
-
-//   typingMessage = (handle) => {
-//     console.log(`1 - sending handle because user:${handle} is typing.`);
-
-//     this.socket.emit('typing', {handle, isTyping: true});
-//   }
-
-//   handleIsTyping = () => {
-//     //clear the timer that way it doesn't get stacked
-//     clearTimeout(this.typing);
-    
-//     //set timer for 3 seconds after most recent keypress and then add the hide class
-//     this.typing = setTimeout(() => {
-//       this.setState({isTyping: false});
-//     }, 3000);
-// }
-
-//   sendMessage = (handle, content) => {
-//       let msg = {
-//         handle,
-//         content
-//       }
-//       this.setState({ 'messages': [msg, ...this.state.messages] });
-//       this.socket.emit('message', msg);
-//   }
-
-//   render() {
-
-//     // this.socket.on('message', (msg) => {
-//     //   console.log('recieved: ', msg);
-//     //   this.setState({ 'messages': [...this.state.messages, msg] })
-//     // });
-    
-
-//     return (
-//       <Store.Provider value = {{sendMessage: this.sendMessage, typingMessage: this.typingMessage, isTyping: this.state.isTyping, typingHandle: this.state.typingHandle, messages: this.state.messages}}>
-//         <div className='container'>
-//           <main className="App">
-//             {/* content goes here */ console.log('app state: ',this.state)}
-//             <Switch>
-//               <Route exact path='/' component={Chat} />
-
-//             </Switch>
-//           </main>
-
-//         </div>
-//       </Store.Provider>
-//     );
-//   }
-
-// }
-  
-
-// export default App;

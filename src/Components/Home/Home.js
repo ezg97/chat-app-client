@@ -146,6 +146,12 @@ class Home extends Component {
 
   }
 
+  componentDidMount() {
+    this.context.getLinks();
+    
+
+  }
+
 
   joinRoom = () => {
     const targetId = this.context.selectedUser;

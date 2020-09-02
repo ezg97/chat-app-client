@@ -46,7 +46,7 @@ class Chat extends React.Component{
               {this.context.allLinks.map(obj => 
                 (obj.id === this.context.selectedUser)
                     ?<ul>
-                        <li><div className='img-border'><img class="img" src={obj.user_thumbnail} alt="Logo"/></div></li>
+                        <li><div className='img-border'><img class="img black" src={obj.user_thumbnail} alt="Logo"/></div></li>
                         <li>{obj.user_name}</li>
                     </ul>
                     :null

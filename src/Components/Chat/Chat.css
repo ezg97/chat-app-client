@@ -78,6 +78,11 @@
 
 }
 
+.black{
+    border: 1px solid black;
+
+}
+
 .messages-right{
     /* padding: 0.5em;
     border-radius: 1em;

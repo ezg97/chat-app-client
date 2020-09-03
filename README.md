@@ -29,6 +29,9 @@ The backend/database uses Node/Exress/PostrgreSQL Socket.io and Passport.js, whi
 
 
 ### 4. **To Link to a user, after searching for them, to the right of their name, click the ":unlock:" emoji, if the emoji shows a ":lock:" then you have been linked!**
+             Linking             |        Unlinking
+:-------------------------------:|:-------------------------------:
+![](readme_images/link_hover.png) | ![](readme_images/unlink_hover.png)
 
 ![Link Image](readme_images/link_hover.png) ![Unlink Image](readme_images/unlink_hover.png)
 

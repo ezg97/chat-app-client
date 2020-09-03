@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Chat App Client
 
-## Available Scripts
+Live Site: [Chat App](https://www.chat-app.dev/)
 
-In the project directory, you can run:
+## Description
+Signup or login using Oauth 2.0 and chose from a variety of social media platforms: GitHub, Google, Twtch, and LinkedIn. 
+Logged into your account, you can search for users and add them to your "Links" (similar to "friends" on FaceBook) and you can chat any user that's online!
 
-### `npm start`
+## Technologies Used
+Created and bootstrapped with create-react-app. This app uses HTML/CSS/React JavaScript and Socket.io to present a complete client side application.
+The backend/database uses Node/Exress/PostrgreSQL Socket.io and Passport.js, which you can find here: [Chat App Server](https://github.com/ezg97/chat-app-server)
 
-Runs the app in the development mode.<br />
-Open [https://www.chat-app.dev](https://www.chat-app.dev) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Page Layout:
 
-### `npm test`
+### 1. **This is the landing page, from here you decide which account you'll use to sign in**
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Landing Page Image](readme_images/landing.png)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. **This is the home page, you can see all of your links on the sidebar, a list of active users (up to 10), a searchbar to find people, and in the right hand corner is your profile picture, click on it and you can select either: Home or Logout**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![Home Page Image](readme_images/home.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### 3. **This is the search results page, after searching for someone, anyone relating to your search will be displayed. Click the user's name or thumbnail to open a chat with them**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Search Results Image](readme_images/search-results.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 4. **To Link to a user, after searching for them, to the right of their name, click the ":unlock:" emoji, if the emoji shows a ":lock:" then you have been linked!**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Link Image](readme_images/link_hover.png) ![Unlink Image](readme_images/unlink_hover.png)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 5. **This is the Chat page. This page will be shown when a user is selected and they're online.**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Chat Image](readme_images/online_mssg.png)
 
-### Code Splitting
+### 6. **This is the page shown when a user is selected, but they are offline**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+![Chat Offline Image](readme_images/offline_mssg.png)
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### 9. **This is how a user logs out or returns to home**
 
-### Making a Progressive Web App
+![Profile Image](readme_images/profile.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

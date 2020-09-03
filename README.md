@@ -28,10 +28,7 @@ The backend/database uses Node/Exress/PostrgreSQL Socket.io and Passport.js, whi
 ![Search Results Image](readme_images/search-results.png)
 
 
-### 4. **To Link to a user, after searching for them, to the right of their name, click the ":unlock:" emoji, if the emoji shows a ":lock:" then you have been linked!**
-             Linking             |        Unlinking
-:-------------------------------:|:-------------------------------:
-![](readme_images/link_hover1.png) | ![](readme_images/unlink_hover1.png)
+### 4. **To Link to a user, click the ":unlock:" emoji, if the emoji shows a ":lock:" then you have been linked!**
 
 ![Link Image](readme_images/link_hover1.png) ![Unlink Image](readme_images/unlink_hover1.png)
 

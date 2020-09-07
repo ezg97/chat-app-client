@@ -23,6 +23,7 @@
     height: 80%;
     padding: 10px;
     overflow-y:auto;
+    /* border: 1px solid red; */
 
     display: flex;
     flex-direction: column;
@@ -34,14 +35,16 @@
 }
 /* START OF LINKS DISPLAY */
 .link-list{
-    margin-top: 4em;
+    /* margin-top: 4em; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     list-style-type: none;
+    /* border: 1px dashed green; */
 
     width: 100%;
+    height: 100%;
 
     padding: 5px;
 }

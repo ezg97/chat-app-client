@@ -311,7 +311,7 @@ class App extends Component {
        selectUser: this.selectUser, addNonLink: this.addNonLink, updateActiveUsers: this.updateActiveUsers,
        updateUnread: this.updateUnread, updateSearched: this.updateSearched}}>
         <div className='container'>
-        { console.log('app state: ', this.state)}
+        { /*console.log('app state: ', this.state)*/}
 
           <main className="App">
             <Route component={Authorization} /> 

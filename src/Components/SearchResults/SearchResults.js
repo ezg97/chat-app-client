@@ -42,8 +42,14 @@ class SearchResults extends React.Component{
                             <section className='select-user' onClick={() => this.context.selectUser(user.id)}>
                                 <div className='img-border'>
                                     {this.context.activeUsers.includes(user.id)
-                                        ? <img class="img active" src={user.user_thumbnail} alt="Logo"/>
-                                        : <img class="img away" src={user.user_thumbnail} alt="Logo"/>
+                                        ? <img class="img active" src={user.user_thumbnail} alt="Logo" onError={({ currentTarget }) => {
+                                            currentTarget.onError = null; // prevents looping
+                                            currentTarget.src = "https://qph.cf2.quoracdn.net/main-qimg-cf89e8e6daa9dabc8174c303e4d53d3a"
+                                        }}/>
+                                        : <img class="img away" src={user.user_thumbnail} alt="Logo" onError={({ currentTarget }) => {
+                                            currentTarget.onError = null; // prevents looping
+                                            currentTarget.src = "https://qph.cf2.quoracdn.net/main-qimg-cf89e8e6daa9dabc8174c303e4d53d3a"
+                                        }}/>
                                     }
                                 </div>
                                 <p className="user_name" tabindex={0}>{user.user_name}</p>

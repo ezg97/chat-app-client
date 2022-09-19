@@ -46,7 +46,10 @@ class Chat extends React.Component{
               {this.context.allLinks.map(obj => 
                 (obj.id === this.context.selectedUser)
                     ?<ul>
-                        <li><div className='img-border'><img class="img black" src={obj.user_thumbnail} alt="Logo"/></div></li>
+                        <li><div className='img-border'><img class="img black" src={obj.user_thumbnail} alt="Logo" onError={({ currentTarget }) => {
+                            currentTarget.onError = null; // prevents looping
+                            currentTarget.src = "https://qph.cf2.quoracdn.net/main-qimg-cf89e8e6daa9dabc8174c303e4d53d3a"
+                        }}/></div></li>
                         <li>{obj.user_name}</li>
                     </ul>
                     :null

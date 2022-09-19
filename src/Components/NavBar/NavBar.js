@@ -63,7 +63,10 @@ class NavBar extends React.Component{
             <Route exact path={['/','/home']} component={SearchBar} />
             <div className='dropdown' tabindex={0} >
                 <div className='img-border'>
-                    <img className="img profile" src={this.context.user.user_thumbnail} alt="Logo"/>
+                    <img className="img profile" src={this.context.user.user_thumbnail} alt="Logo" onError={({ currentTarget }) => {
+                        currentTarget.onError = null; // prevents looping
+                        currentTarget.src = "https://qph.cf2.quoracdn.net/main-qimg-cf89e8e6daa9dabc8174c303e4d53d3a"
+                    }}/>
                 </div> 
                 <div className="dropdown-content" tabindex={2}>
                     <a href="#" onClick={() => this.onHomeClick()} tabindex={0}>Home</a>

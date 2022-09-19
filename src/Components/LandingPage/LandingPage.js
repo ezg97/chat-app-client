@@ -270,7 +270,8 @@ class LandingPage extends React.Component{
                     <button className='oauth github'  onClick={(e) => this.btnLocal(e)}>Github</button>
                     <button className='oauth google' onClick={(e) => this.btnGoogle(e)}>Google</button>
                     <button className='oauth twitch' onClick={(e) => this.btnTwitch(e)}>Twitch</button>
-                    <button className='oauth linkedin' onClick={(e) => this.btnLinkedIn(e)}>LinkedIn</button>
+                    {/* package used for LinkedIn Oauth has been deprecated... plan to come back and find a new package one day */}
+                    {/* <button className='oauth linkedin' onClick={(e) => this.btnLinkedIn(e)}>LinkedIn</button> */}
 
 
                 </section>
